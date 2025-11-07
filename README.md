@@ -33,4 +33,9 @@ We will leverage this existing data to make informed predictions on how lawmaker
 
 ### Part 1: Neural Network
 
+The neural network will capture the "contextual" part of the prediction. It will accept features like party, sponsorship,
+party majorities, etc. It will output a prediction between 0 and 1.
+
 ### Part 2: User-User Collaborative Filtering
+
+We will seek to compare the existing votes of legislators to predict whether they will vote on a piece of legislation.
