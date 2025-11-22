@@ -36,5 +36,6 @@ def cleanse_member_votes(cleansed_rollcalls_path: str, members_votes_path: str):
             if rollnumber in relevant_rollnums:
                 writer.writerow(row)
 
-cleanse_member_votes("/Users/jakesquatrito/Downloads/S119_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/S119_votes.csv")
-cleanse_member_votes("/Users/jakesquatrito/Downloads/H119_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/H119_votes.csv")
+# okay to use cleansed or cleansed API files for this! (but cleansed files are expected)
+cleanse_member_votes("/Users/jakesquatrito/Desktop/project_files/S119_rollcalls_CLEANSED_API.csv", "/Users/jakesquatrito/Desktop/S119_votes.csv")
+cleanse_member_votes("/Users/jakesquatrito/Desktop/project_files/H119_rollcalls_CLEANSED_API.csv", "/Users/jakesquatrito/Desktop/H119_votes.csv")
