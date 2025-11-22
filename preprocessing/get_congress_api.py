@@ -25,13 +25,6 @@ API_URL = "https://api.congress.gov/v3"
 API_KEY = "FgDW4PImyNFJlEtXkh4fF2etdofA6vxoR7U7agzd"
 
 '''
-Outputs an augmented version of the supplied Member Ideology file with additional data from the Congress API
-for each member.
-'''
-def congress_api_legislators(member_path: str):
-    pass
-
-'''
 Returns (bill_type, bill_number) from the given bill number String from VoteView.
 '''
 def split_bill_num_str(bill_num_str: str):
@@ -45,6 +38,46 @@ def split_bill_num_str(bill_num_str: str):
     bill_num = bill_num_str[i:]
 
     return bill_type.lower(), bill_num
+
+'''
+Outputs an augmented version of the supplied Member Ideology file with additional data from the Congress API
+for each member.
+'''
+def congress_api_legislators(member_path: str, congress_num: int):
+    member_input_path = Path(member_path)
+    member_output_path = member_input_path.with_name(member_input_path.stem + "_API" + member_input_path.suffix)
+
+    # endpoint is /memeber/{bioguideId}
+    with open(member_path) as member_input_file, open(member_output_path, 'w') as member_output_file:
+        reader = csv.DictReader(member_input_file)
+        writer = csv.DictWriter(member_output_file, fieldnames=reader.fieldnames + ["pieces_cosponsored", "num_congresses"])
+
+        writer.writeheader()
+
+        for row in reader:
+            member_bioguide = row["bioguide_id"]
+
+            endpoint_url = f"{API_URL}/member/{member_bioguide}"
+            params = {
+                "format": "json",
+                "api_key": API_KEY
+            }
+
+            response = requests.get(endpoint_url, params=params)
+            response.raise_for_status()
+
+            data = response.json()
+            member_terms = data["member"]["terms"]
+
+            # the api returns "terms" as each congress they have served in
+            num_congresses = len([t for t in member_terms if t["congress"] < congress_num])
+            num_cosponsored = data["member"]["cosponsoredLegislation"]["count"]
+
+            api_row = dict(row)
+            api_row["pieces_cosponsored"] = num_cosponsored
+            api_row["num_congresses"] = num_congresses
+
+            writer.writerow(api_row)
 
 '''
 Outputs an augmented version of the supplied cleansed Congressional Votes (rollcalls) file with additional data from 
@@ -95,4 +128,8 @@ def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
 
             writer.writerow(api_row)
 
-congress_api_legislation("/Users/jakesquatrito/Desktop/H119_rollcalls_CLEANSED.csv", 119)
+# congress_api_legislation("/Users/jakesquatrito/Desktop/H119_rollcalls_CLEANSED.csv", 119)
+# congress_api_legislation("/Users/jakesquatrito/Desktop/S119_rollcalls_CLEANSED.csv", 119)
+
+congress_api_legislators("/Users/jakesquatrito/Desktop/H119_members.csv", 119)
+congress_api_legislators("/Users/jakesquatrito/Desktop/S119_members.csv", 119)
