@@ -1,4 +1,5 @@
 import csv
+import requests
 from pathlib import Path
 
 '''
@@ -21,6 +22,7 @@ will be output in "{cleansed_rollcalls_path}_API.csv".
 '''
 
 API_URL = "https://api.congress.gov/v3"
+API_KEY = "FgDW4PImyNFJlEtXkh4fF2etdofA6vxoR7U7agzd"
 
 '''
 Outputs an augmented version of the supplied Member Ideology file with additional data from the Congress API
@@ -42,7 +44,7 @@ def split_bill_num_str(bill_num_str: str):
     bill_type = bill_num_str[:i]
     bill_num = bill_num_str[i:]
 
-    return bill_type, bill_num
+    return bill_type.lower(), bill_num
 
 '''
 Outputs an augmented version of the supplied cleansed Congressional Votes (rollcalls) file with additional data from 
@@ -50,12 +52,12 @@ the Congress API for each bill. Again, the supplied file should have already bee
 '''
 def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
     rollcalls_input_path = Path(cleansed_rollcalls_path)
-    rollcalls_output_path = rollcalls_input_path.with_name(rollcalls_input_path.suffix + "_API" + rollcalls_input_path.suffix)
+    rollcalls_output_path = rollcalls_input_path.with_name(rollcalls_input_path.stem + "_API" + rollcalls_input_path.suffix)
 
     # API endpoint is "/bill/{congress}/{billType}/{billNumber}/cosponsors
-    with open(cleansed_rollcalls_path) as f:
-        reader = csv.DictReader(f)
-        writer = csv.DictWriter(rollcalls_output_path, reader.fieldnames)
+    with open(cleansed_rollcalls_path) as cleansed_rollcalls_file, open(rollcalls_output_path, "w") as rollcalls_output_file:
+        reader = csv.DictReader(cleansed_rollcalls_file)
+        writer = csv.DictWriter(rollcalls_output_file, reader.fieldnames + ["dem_cosponsors", "rep_cosponsors"])
 
         writer.writeheader()
 
@@ -63,12 +65,34 @@ def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
             bill_num_str = row['bill_number']
             bill_type, bill_num = split_bill_num_str(bill_num_str)
 
-            endpoint_url = f"{API_URL}/{congress_num}/{bill_type}/{bill_num}/cosponsors"
-            # make the API request
+            endpoint_url = f"{API_URL}/bill/{congress_num}/{bill_type}/{bill_num}/cosponsors"
+            params = {
+                "format": "json",
+                "api_key": API_KEY,
+                # the results are paginated. we don't need that
+                "limit": 999
+            }
 
-            # count number of cosponsors with "party" = "D"
-            # count number of cosponsors with "party" = "R"
+            response = requests.get(endpoint_url, params=params)
+            response.raise_for_status()
 
-            # write this back to the file? write to a new file? ??
+            data = response.json()
 
-print(congress_api_legislation("/Users/jakesquatrito/Downloads/S119_rollcalls_CLEANSED.csv", 119))
+            cosponsors = data["cosponsors"]
+            rep_cosponsors = 0
+            dem_cosponsors = 0
+
+            for cosponsor in cosponsors:
+                if cosponsor["party"] == "D":
+                    dem_cosponsors += 1
+
+                if cosponsor["party"] == "R":
+                    rep_cosponsors += 1
+
+            api_row = dict(row)
+            api_row["dem_cosponsors"] = dem_cosponsors
+            api_row["rep_cosponsors"] = rep_cosponsors
+
+            writer.writerow(api_row)
+
+congress_api_legislation("/Users/jakesquatrito/Desktop/H119_rollcalls_CLEANSED.csv", 119)
