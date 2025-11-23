@@ -92,7 +92,6 @@ build_user_item_matrix <- function(votes_df) {
 
   return(mat)
 }
-
 ```
 
 ```{r}
