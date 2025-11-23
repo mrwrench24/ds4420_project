@@ -27,6 +27,16 @@ head(senate_votes)
 # https://www.statology.org/r-filter-in/
 house_filtered_votes <- house_votes[house_votes$rollnumber %in% house_bills, ]
 senate_filtered_votes <- senate_votes[senate_votes$rollnumber %in% senate_bills, ]
+
+# set cast 1,2,3 as yay, 4,5,6 as nay, and 0,7,8,9 as N/A (or abstain)
+# we should never get to anywhere outside of 0-9 for cast code, but using NA for error handling
+house_filtered_votes$vote_label <- with(house_filtered_votes, ifelse(cast_code %in% c(1, 2, 3), 1,
+                          ifelse(cast_code %in% c(4, 5, 6), -1,
+                          ifelse(cast_code %in% c(0, 7, 8, 9), 0, NA))))
+
+senate_filtered_votes$vote_label <- with(senate_filtered_votes, ifelse(cast_code %in% c(1, 2, 3), 1,
+                          ifelse(cast_code %in% c(4, 5, 6), -1,
+                          ifelse(cast_code %in% c(0, 7, 8, 9), 0, NA))))
 ```
 making sure that all of the bills are filtered (reduced filter rows)
 ```{r}
@@ -41,6 +51,68 @@ print(nrow(house_votes))
 house_members <- read.csv("../data/H118_votes.csv")
 senate_members <- read.csv("../data/S118_votes.csv")
 
-head(house_members)
+# grab relevant icpsrs -- TODO: might remove this in the future but idk if we should just get the relevant members (sounds better for computation)
+house_icpsr <- house_filtered_votes$icpsr
+senate_icpsr <- senate_filtered_votes$icpsr
 
+# head(house_members)
+house_filtered_members <- house_members[house_members$rollnumber %in% house_bills, ]
+senate_filtered_members <- senate_members[senate_members$rollnumber %in% senate_bills, ]
+```
+
+```{r}
+# these should match the numbers from above
+nrow(house_filtered_members)
+nrow(senate_filtered_members)
+```
+
+## making the matrix
+```{r matrix}
+# we assume that the vote df has icpsr, rollnumber, and the vote label we assigned 
+build_user_item_matrix <- function(votes_df) {
+  users <- sort(unique(votes_df$icpsr))
+  # items = bills
+  bills <- sort(unique(votes_df$rollnumber))
+
+  # initialize matrix of 0s
+  mat <- matrix(0,
+                nrow = length(users),
+                ncol = length(bills),
+                dimnames = list(users, bills))
+
+  # fill matrix
+  for (i in seq_len(nrow(votes_df))) {
+    u <- votes_df$icpsr[i]
+    b <- votes_df$rollnumber[i]
+    v <- votes_df$vote_label[i]
+    
+    # place vote into correct cell
+    mat[as.character(u), as.character(b)] <- v
+  }
+
+  return(mat)
+}
+
+```
+
+```{r}
+house_matrix <- build_user_item_matrix(house_filtered_votes)
+senate_matrix <- build_user_item_matrix(senate_filtered_votes)
+
+# sanity checking
+print(length(unique(house_filtered_members$icpsr)))
+print(length(unique(house_filtered_votes$rollnumber)))
+dim(house_matrix)
+
+print(length(unique(senate_filtered_members$icpsr)))
+print(length(unique(senate_filtered_votes$rollnumber)))
+dim(senate_matrix)
+```
+
+```{r}
+house_matrix[1:5, 1:5]
+```
+
+```{r}
+senate_matrix[1:5, 1:5]
 ```
