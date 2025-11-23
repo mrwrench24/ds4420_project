@@ -6,4 +6,41 @@ output: html_document
 ---
 
 ```{r}
+house_rc <- read.csv("../data/H118_rollcalls_CLEANSED.csv")
+senate_rc <- read.csv("../data/S118_rollcalls_CLEANSED.csv")
+
+head(house_rc)
+head(senate_rc)
+
+house_bills <- house_rc$rollnumber
+senate_bills <- senate_rc$rollnumber
+print(house_bills)
+```
+
+```{r}
+house_votes <- read.csv("../data/H118_votes.csv")
+senate_votes <- read.csv("../data/S118_votes.csv")
+
+head(house_votes)
+head(senate_votes)
+
+# https://www.statology.org/r-filter-in/
+house_filtered_votes <- house_votes[house_votes$rollnumber %in% house_bills, ]
+senate_filtered_votes <- senate_votes[senate_votes$rollnumber %in% senate_bills, ]
+```
+making sure that all of the bills are filtered (reduced filter rows)
+```{r}
+print(nrow(senate_filtered_votes))
+print(nrow(senate_votes))
+
+print(nrow(house_filtered_votes))
+print(nrow(house_votes))
+```
+
+```{r}
+house_members <- read.csv("../data/H118_votes.csv")
+senate_members <- read.csv("../data/S118_votes.csv")
+
+head(house_members)
+
 ```
