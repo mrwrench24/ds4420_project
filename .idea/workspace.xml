@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="DP-13-nn-preprocess" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;mrwrench24&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mrwrench24/ds4420_project.git&quot;,
+    &quot;accountId&quot;: &quot;9f9e1087-ee6e-432d-8695-9b79bca11c05&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="34hYEUkAwTkvFFxwRI7SgSF1YhP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.cleanse_bills.executor": "Run",
+    "Python.cleanse_member_votes.executor": "Run",
+    "Python.get_congress_api.executor": "Run",
+    "Python.nn_preprocess.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/datafiles" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/datafiles" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-9f8e2b94138c-36ea0e71a18c-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.26094.141" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="" />
+      <created>1761667158968</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761667158968</updated>
+    </task>
+    <task id="LOCAL-00001" summary="initial readme scaffolding">
+      <option name="closed" value="true" />
+      <created>1761668607868</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1761668607868</updated>
+    </task>
+    <task id="LOCAL-00002" summary="works for senate but more is needed on house">
+      <option name="closed" value="true" />
+      <created>1763491498594</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1763491498594</updated>
+    </task>
+    <task id="LOCAL-00003" summary="house works">
+      <option name="closed" value="true" />
+      <created>1763500684603</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1763500684603</updated>
+    </task>
+    <task id="LOCAL-00004" summary="progress towards preprocessing and outlining what else needs to be done. taking more of a &quot;pipelined&quot; approach but with individual files">
+      <option name="closed" value="true" />
+      <created>1763584492406</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1763584492406</updated>
+    </task>
+    <task id="LOCAL-00005" summary="more for api on legislation (which is the harder one)">
+      <option name="closed" value="true" />
+      <created>1763586220731</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1763586220731</updated>
+    </task>
+    <task id="LOCAL-00006" summary="congress api preprocessing for cleansed legislative datasets- get the number of cosponsors">
+      <option name="closed" value="true" />
+      <created>1763828953589</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1763828953589</updated>
+    </task>
+    <task id="LOCAL-00007" summary="congress api functions completed">
+      <option name="closed" value="true" />
+      <created>1763832371613</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1763832371613</updated>
+    </task>
+    <task id="LOCAL-00008" summary="cleanup + some datafiles for the 119th congress">
+      <option name="closed" value="true" />
+      <created>1763832632176</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1763832632176</updated>
+    </task>
+    <task id="LOCAL-00009" summary="prepping for last preprocessing step">
+      <option name="closed" value="true" />
+      <created>1763833603600</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1763833603600</updated>
+    </task>
+    <task id="LOCAL-00010" summary="lots of neural net preprocessing">
+      <option name="closed" value="true" />
+      <created>1763837105474</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1763837105474</updated>
+    </task>
+    <task id="LOCAL-00011" summary="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration">
+      <option name="closed" value="true" />
+      <created>1763923773230</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1763923773230</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial readme scaffolding" />
+    <MESSAGE value="works for senate but more is needed on house" />
+    <MESSAGE value="house works" />
+    <MESSAGE value="progress towards preprocessing and outlining what else needs to be done. taking more of a &quot;pipelined&quot; approach but with individual files" />
+    <MESSAGE value="more for api on legislation (which is the harder one)" />
+    <MESSAGE value="congress api preprocessing for cleansed legislative datasets- get the number of cosponsors" />
+    <MESSAGE value="congress api functions completed" />
+    <MESSAGE value="cleanup + some datafiles for the 119th congress" />
+    <MESSAGE value="prepping for last preprocessing step" />
+    <MESSAGE value="lots of neural net preprocessing" />
+    <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+    <option name="LAST_COMMIT_MESSAGE" value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+  </component>
+</project>
