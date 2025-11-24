@@ -9,11 +9,12 @@ build_user_item_matrix <- function(votes_df) {
   users <- sort(unique(votes_df$icpsr))
   # items = bills
   bills <- sort(unique(votes_df$rollnumber))
+  bill_count <- length(bills)
   
   # initialize matrix of 0s
-  mat <- matrix(0,
+  votes_mat <- matrix(NA,
                 nrow = length(users),
-                ncol = length(bills),
+                ncol = bill_count,
                 dimnames = list(users, bills))
   
   # fill matrix
@@ -23,10 +24,17 @@ build_user_item_matrix <- function(votes_df) {
     v <- votes_df$vote_label[i]
     
     # place vote into correct cell
-    mat[as.character(u), as.character(b)] <- v
+    votes_mat[as.character(u), as.character(b)] <- v
   }
   
-  return(mat)
+  # only keep users who have voted on more than 30% of bills
+  # rowSums returns a count of how many values are true in the row, 
+  # where the true values are if it's not NA
+  votes_per_user <- rowSums(!is.na(votes_mat))
+  user_to_keep <- votes_per_user >= 0.30 * bill_count
+  
+  votes_mat <- votes_mat[user_to_keep, ]
+  return(votes_mat)
 }
 
 # Return a filtered dataframe of votes with a new column for vote_label.
