@@ -2,6 +2,8 @@ import csv
 from pathlib import Path
 
 '''
+Data Processing, Step 1:
+
 This code will cleanse a "rollcalls" CSV from VoteView.
 
 The VoteView data, as is, includes votes / data on many procedural motions, and
@@ -64,4 +66,4 @@ def cleanse_bills(rollcalls_senate_path: str, rollcalls_house_path: str):
             if question in HOUSE_ALLOWED_QUESTIONS and bill_number in senate_bill_numbers:
                 writer.writerow(row)
 
-cleanse_bills("data/S118_rollcalls.csv", "data/H118_rollcalls.csv")
+cleanse_bills("/Users/jakesquatrito/Downloads/S119_rollcalls.csv", "/Users/jakesquatrito/Downloads/H119_rollcalls.csv")
