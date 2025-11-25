@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small things, lower learning">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/get_congress_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/get_congress_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764093597410</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)">
+      <option name="closed" value="true" />
+      <created>1764104015101</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764104015101</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -222,6 +227,7 @@
     <MESSAGE value="first pass of a neural network that is... working... remarkably... well?" />
     <MESSAGE value="also adding AOC on the BBB" />
     <MESSAGE value="small things, lower learning" />
-    <option name="LAST_COMMIT_MESSAGE" value="small things, lower learning" />
+    <MESSAGE value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
+    <option name="LAST_COMMIT_MESSAGE" value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
   </component>
 </project>

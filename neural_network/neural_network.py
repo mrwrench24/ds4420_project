@@ -36,7 +36,7 @@ def make_model() -> Model:
 
     model = Model([inpx], out)
 
-    model.compile(optimizer=Adam(learning_rate=0.0005),
+    model.compile(optimizer=Adam(learning_rate=0.0008),
                   loss=binary_crossentropy,
                   # accuracy is probably not the best, but i want to see how it does? for now?
                   metrics=[
@@ -85,7 +85,29 @@ def anecdotal_analysis(model):
     # so the model is allowed to go "all in" - not just wavering etc.
     print(f"AOC Prob: {model.predict(aoc)}")
 
-    # how would
+    print("----------------")
+
+    # the biggest thing from the 118th congress was the debt ceiling - HR3746, roll number 146
+    # this was something where the "far left" and the "far right" were joined in opposition
+    # Sen. Warren (icpsr 41301) was a no and Rep. Matt Gaetz (21719) were nos
+    # Gaetz is also interesting to include because he was not in 119th Congress
+
+    # Warren = (-0.744, -0.37), 0.0561733333 cosponsor, 0.125 congress
+    # FRA = (0.548, 0.836), 0.0 0.0
+    warren = np.array([
+        0.0, 0.0, 1.0, 0.0, 0.0, 0.0561733333,
+        0.125, -0.744, -0.37, 0.548, 0.836
+    ]).reshape(1, -1)
+
+    # Gaetz = (0.593, -0.643), 0.02302666 cosponsor, 0.075 congresses
+    # FRA = (0.277, -0.228), 0.0 0.0
+    gaetz = np.array([
+        0.0, 1.0, 0.0, 0.0, 0.0, 0.02302666,
+        0.075, 0.593, -0.643, 0.277, -0.228
+    ]).reshape(1, -1)
+
+    print(f"Warren Prob: {model.predict(warren)}")
+    print(f"Gaetz Prob: {model.predict(gaetz)}")
 
 
 def run_nn(nn_file_paths: list[str]):
@@ -110,7 +132,7 @@ def run_nn(nn_file_paths: list[str]):
 
     model = make_model()
 
-    model.fit(X_train, Y_train, epochs=60)
+    model.fit(X_train, Y_train, epochs=250)
 
     score = model.evaluate(X_test, Y_test)
     print(f"Test Binary Cross-Entropy: {score[0]}")
@@ -118,4 +140,9 @@ def run_nn(nn_file_paths: list[str]):
 
     anecdotal_analysis(model)
 
-run_nn(["../datafiles/NN_HOUSE_119.csv", "../datafiles/NN_SENATE_119.csv"])
+run_nn([
+    "../datafiles/NN_HOUSE_118.csv",
+    "../datafiles/NN_SENATE_118.csv",
+    "../datafiles/NN_HOUSE_119.csv",
+    "../datafiles/NN_SENATE_119.csv"
+])
