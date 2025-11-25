@@ -22,7 +22,7 @@ input to the planned Neural Network:
 - Legislation Voteview Dimensions (1 and 2)
 
 For training, it also has to include:
-- Member's Vote
+- Member's Vote (For simplicity, 0 = no, 1 = yes, remove all non-votes / presents)
 
 To keep it organized, we will also include:
 - Bioguide ID for the Member
