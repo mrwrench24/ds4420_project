@@ -65,7 +65,25 @@ def anecdotal_analysis(model):
     ]).reshape(1, -1)
 
     print(f"Murkowski Prob: {model.predict(murkowski)}")
+    # a note - voteview assigns their own probabilities to votes.
+    # so even though the collins probability is usually around 90% even though she
+    # voted no, it seems like, statistically, it was a surprise.
+    # this was a vote that i just chose on my own - so sometimes there will be surprises!
+    # i'd want to make sure that democrats aren't predicted as voting on it...
     print(f"Collins Prob: {model.predict(collins)}")
+
+    # AOC: icpsr 21949, voted no, party code = 0,0, house member
+    # cosponsored = 0.02082666, congresses = 0.075
+    # nominate = (-0.327, -0.945)
+    # here, the BBB dims are (-0.159, 0.987)
+    aoc = np.array([
+        0.0, 0.0, 0.0, 0.0, 0.0, 0.02082666,
+        0.075, -0.327, -0.945, -0.159, 0.987
+    ]).reshape(1, -1)
+
+    # giving no chance that AOC would vote for the bill
+    # so the model is allowed to go "all in" - not just wavering etc.
+    print(f"AOC Prob: {model.predict(aoc)}")
 
 
 def run_nn(nn_file_paths: list[str]):
@@ -90,7 +108,7 @@ def run_nn(nn_file_paths: list[str]):
 
     model = make_model()
 
-    model.fit(X_train, Y_train, epochs=40)
+    model.fit(X_train, Y_train, epochs=35)
 
     score = model.evaluate(X_test, Y_test)
     print(score)

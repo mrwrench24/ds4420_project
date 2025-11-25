@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration">
-      <change afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="first pass of a neural network that is... working... remarkably... well?">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763923773230</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="first pass of a neural network that is... working... remarkably... well?">
+      <option name="closed" value="true" />
+      <created>1764089215617</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764089215617</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -194,6 +200,7 @@
     <MESSAGE value="prepping for last preprocessing step" />
     <MESSAGE value="lots of neural net preprocessing" />
     <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+    <MESSAGE value="first pass of a neural network that is... working... remarkably... well?" />
+    <option name="LAST_COMMIT_MESSAGE" value="first pass of a neural network that is... working... remarkably... well?" />
   </component>
 </project>
