@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="also adding AOC on the BBB">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small things, lower learning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/get_congress_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/get_congress_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,21 +54,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cleanse_bills.executor": "Run",
-    "Python.cleanse_member_votes.executor": "Run",
-    "Python.get_congress_api.executor": "Run",
-    "Python.neural_network.executor": "Run",
-    "Python.nn_preprocess.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "DP-15-nn-impl",
-    "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.cleanse_bills.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cleanse_member_votes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_congress_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.neural_network.executor&quot;: &quot;Run&quot;,
+    &quot;Python.nn_preprocess.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DP-15-nn-impl&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jakesquatrito/Desktop/ds4420_project/datafiles&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/datafiles" />
@@ -193,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764089677617</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="small things, lower learning">
+      <option name="closed" value="true" />
+      <created>1764093597410</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1764093597410</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -210,6 +221,7 @@
     <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
     <MESSAGE value="first pass of a neural network that is... working... remarkably... well?" />
     <MESSAGE value="also adding AOC on the BBB" />
-    <option name="LAST_COMMIT_MESSAGE" value="also adding AOC on the BBB" />
+    <MESSAGE value="small things, lower learning" />
+    <option name="LAST_COMMIT_MESSAGE" value="small things, lower learning" />
   </component>
 </project>

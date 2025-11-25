@@ -85,6 +85,8 @@ def anecdotal_analysis(model):
     # so the model is allowed to go "all in" - not just wavering etc.
     print(f"AOC Prob: {model.predict(aoc)}")
 
+    # how would
+
 
 def run_nn(nn_file_paths: list[str]):
     data_df = pd.DataFrame()

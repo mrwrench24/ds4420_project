@@ -182,15 +182,15 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     merged_df.to_csv(output_path, index=False)
 
 nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_HOUSE_119.csv"
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_members_API.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_rollcalls_CLEANSED_API.csv",
+"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_votes_CLEANSED.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_HOUSE_118.csv"
 )
 
 nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_SENATE_119.csv"
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_members_API.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_rollcalls_CLEANSED_API.csv",
+"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_votes_CLEANSED.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_SENATE_118.csv"
 )

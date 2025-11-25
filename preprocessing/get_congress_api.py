@@ -128,8 +128,8 @@ def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
 
             writer.writerow(api_row)
 
-# congress_api_legislation("/Users/jakesquatrito/Desktop/H119_rollcalls_CLEANSED.csv", 119)
-# congress_api_legislation("/Users/jakesquatrito/Desktop/S119_rollcalls_CLEANSED.csv", 119)
+congress_api_legislation("/Users/jakesquatrito/Downloads/H118_rollcalls_CLEANSED.csv", 118)
+congress_api_legislation("/Users/jakesquatrito/Downloads/S118_rollcalls_CLEANSED.csv", 118)
 
-congress_api_legislators("/Users/jakesquatrito/Desktop/H119_members.csv", 119)
-congress_api_legislators("/Users/jakesquatrito/Desktop/S119_members.csv", 119)
+congress_api_legislators("/Users/jakesquatrito/Downloads/H118_members.csv", 118)
+congress_api_legislators("/Users/jakesquatrito/Downloads/S118_members.csv", 118)
