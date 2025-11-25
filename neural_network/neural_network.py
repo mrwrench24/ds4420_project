@@ -36,7 +36,7 @@ def make_model() -> Model:
 
     model = Model([inpx], out)
 
-    model.compile(optimizer=Adam(learning_rate=0.001),
+    model.compile(optimizer=Adam(learning_rate=0.0005),
                   loss=binary_crossentropy,
                   # accuracy is probably not the best, but i want to see how it does? for now?
                   metrics=[
@@ -108,10 +108,11 @@ def run_nn(nn_file_paths: list[str]):
 
     model = make_model()
 
-    model.fit(X_train, Y_train, epochs=35)
+    model.fit(X_train, Y_train, epochs=60)
 
     score = model.evaluate(X_test, Y_test)
-    print(score)
+    print(f"Test Binary Cross-Entropy: {score[0]}")
+    print(f"Test Accuracy: {score[1]}")
 
     anecdotal_analysis(model)
 
