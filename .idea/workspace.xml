@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-    </list>
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -209,7 +206,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764104015101</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)">
+      <option name="closed" value="true" />
+      <created>1764105640034</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1764105640034</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -228,6 +233,7 @@
     <MESSAGE value="also adding AOC on the BBB" />
     <MESSAGE value="small things, lower learning" />
     <MESSAGE value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
-    <option name="LAST_COMMIT_MESSAGE" value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
+    <MESSAGE value="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
+    <option name="LAST_COMMIT_MESSAGE" value="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
   </component>
 </project>
