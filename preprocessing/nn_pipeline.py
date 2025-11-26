@@ -3,8 +3,6 @@ from preprocessing.cleanse_member_votes import cleanse_member_votes
 from preprocessing.get_congress_api import congress_api_legislation, congress_api_legislators
 from preprocessing.nn_preprocess import nn_preprocess
 
-print("Hi")
-
 '''
 Download the 6 relevant files for a Congress and run the pipeline. You'll get the NN files output
 in datafiles/NN_files.
@@ -61,4 +59,4 @@ def nn_pipeline(congress_num: int):
     nn_preprocess(senate_members_api, sen_roll_cleanse_api, sen_votes_cleansed, f"../datafiles/NN_files/NN_SENATE_{congress_num}.csv")
     nn_preprocess(house_members_api, house_roll_cleanse_api, house_votes_cleansed,f"../datafiles/NN_files/NN_HOUSE_{congress_num}.csv")
 
-nn_pipeline(117)
+nn_pipeline(115)

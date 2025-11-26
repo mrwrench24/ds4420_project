@@ -100,12 +100,16 @@ def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_clea
             # sometimes the data is a double (thanks voteview :/)
             icpsr = int(float(row["icpsr"]))
 
+            if icpsr not in members_dict:
+                print(f"Skipping icpsr {icpsr}")
+                continue
+
             member_info = members_dict[icpsr]
             bill_info = bill_dict[rollnumber]
 
             merged_info = member_info | bill_info
 
-            merged_info["vote"] = row["cast_code"]
+            merged_info["vote"] = int(float(row["cast_code"]))
             merged_info["rollnumber"] = rollnumber
             merged_info["icpsr"] = icpsr
 
@@ -145,8 +149,9 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     merged_df["party_code_2"] = merged_df["party_code"].map(PARTY_MAPPING_2).astype(int)
 
     # remove non-votes, then replace
-    merged_df = merged_df[~merged_df["vote"].isin(["0", "7", "8", "9"])]
-    merged_df["vote"] = merged_df["vote"].map(VOTE_MAPPING).astype(int)
+    merged_df = merged_df[~merged_df["vote"].isin([0, 7, 8, 9])]
+    print(merged_df["vote"].unique())
+    merged_df["vote"] = merged_df["vote"].map(VOTE_MAPPING)
 
     # should be only 0, 1
     # print(merged_df["vote"].unique())
@@ -184,17 +189,17 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     merged_df.drop("born", axis=1, inplace=True)
 
     merged_df.to_csv(output_path, index=False)
-
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_HOUSE_117.csv"
-)
-
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_SENATE_117.csv"
-)
+#
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H116_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H116_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H116_votes_CLEANSED.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_HOUSE_116.csv"
+# )
+#
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S116_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S116_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S116_votes_CLEANSED.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_SENATE_116.csv"
+# )
