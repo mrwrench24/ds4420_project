@@ -132,7 +132,7 @@ def run_nn(nn_file_paths: list[str]):
 
     model = make_model()
 
-    model.fit(X_train, Y_train, epochs=250)
+    model.fit(X_train, Y_train, epochs=200)
 
     score = model.evaluate(X_test, Y_test)
     print(f"Test Binary Cross-Entropy: {score[0]}")
@@ -141,8 +141,15 @@ def run_nn(nn_file_paths: list[str]):
     anecdotal_analysis(model)
 
 run_nn([
-    "../datafiles/NN_HOUSE_118.csv",
-    "../datafiles/NN_SENATE_118.csv",
-    "../datafiles/NN_HOUSE_119.csv",
-    "../datafiles/NN_SENATE_119.csv"
+    "../datafiles/NN_files/NN_HOUSE_115.csv",
+    "../datafiles/NN_files/NN_SENATE_115.csv",
+    "../datafiles/NN_files/NN_HOUSE_116.csv",
+    "../datafiles/NN_files/NN_SENATE_116.csv",
+    "../datafiles/NN_files/NN_HOUSE_117.csv",
+    "../datafiles/NN_files/NN_SENATE_117.csv",
+    "../datafiles/NN_files/NN_HOUSE_118.csv",
+    "../datafiles/NN_files/NN_SENATE_118.csv",
+    "../datafiles/NN_files/NN_HOUSE_119.csv",
+    "../datafiles/NN_files/NN_SENATE_119.csv"
 ])
+
