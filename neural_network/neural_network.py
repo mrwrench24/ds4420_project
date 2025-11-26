@@ -118,7 +118,6 @@ def run_nn(nn_file_paths: list[str]):
 
         data_df = pd.concat([data_df, current_df], ignore_index=True)
 
-
     train_data, test_data = train_test_split(data_df, test_size=0.2)
 
     X_train = train_data[INPUT_COLUMNS]
@@ -127,6 +126,7 @@ def run_nn(nn_file_paths: list[str]):
     Y_train = train_data[OUTPUT_COLUMN]
     Y_test = test_data[OUTPUT_COLUMN]
 
+    # always checking for some class imbalance
     print(Y_train.value_counts())
     print(Y_test.value_counts())
 

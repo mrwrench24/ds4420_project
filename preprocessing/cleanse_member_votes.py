@@ -37,5 +37,5 @@ def cleanse_member_votes(cleansed_rollcalls_path: str, members_votes_path: str):
                 writer.writerow(row)
 
 # okay to use cleansed or cleansed API files for this! (but cleansed files are expected)
-cleanse_member_votes("/Users/jakesquatrito/Downloads/S118_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/S118_votes.csv")
-cleanse_member_votes("/Users/jakesquatrito/Downloads/H118_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/H118_votes.csv")
+# cleanse_member_votes("/Users/jakesquatrito/Downloads/S118_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/S118_votes.csv")
+# cleanse_member_votes("/Users/jakesquatrito/Downloads/H118_rollcalls_CLEANSED.csv", "/Users/jakesquatrito/Downloads/H118_votes.csv")

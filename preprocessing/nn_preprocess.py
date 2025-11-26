@@ -64,7 +64,7 @@ def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_clea
         reader = csv.DictReader(members_file)
 
         for row in reader:
-            icpsr = row["icpsr"]
+            icpsr = int(row["icpsr"])
 
             dict_for_member = dict()
             for key in MEMBER_KEYS:
@@ -97,7 +97,8 @@ def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_clea
 
         for row in reader:
             rollnumber = row["rollnumber"]
-            icpsr = row["icpsr"]
+            # sometimes the data is a double (thanks voteview :/)
+            icpsr = int(float(row["icpsr"]))
 
             member_info = members_dict[icpsr]
             bill_info = bill_dict[rollnumber]
@@ -119,6 +120,8 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     # datasets to build a dataframe with each row containing the relevant member + legislative information
     merged_df = nn_dataset_merging(members_api, rollcalls_cleansed_api, votes_cleansed)
 
+    print(merged_df.head())
+
     # 4. typical ML preprocessing
     '''
     Categorical Variables - using custom mappings to ensure consistency across
@@ -135,6 +138,7 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     that requires either 1.) we are bound to one election's results (and it misses changing nature of country)
     or 2.) requires a lot more data to be collected.
     '''
+    merged_df = merged_df[merged_df["chamber"].isin(CHAMBER_MAPPING)]
     merged_df["chamber"] = merged_df["chamber"].map(CHAMBER_MAPPING).astype(int)
 
     merged_df["party_code_1"] = merged_df["party_code"].map(PARTY_MAPPING_1).astype(int)
@@ -182,15 +186,15 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     merged_df.to_csv(output_path, index=False)
 
 nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H118_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_HOUSE_118.csv"
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_members_API.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_rollcalls_CLEANSED_API.csv",
+"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H117_votes_CLEANSED.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_HOUSE_117.csv"
 )
 
 nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S118_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_SENATE_118.csv"
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_members_API.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_rollcalls_CLEANSED_API.csv",
+"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S117_votes_CLEANSED.csv",
+    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_files/NN_SENATE_117.csv"
 )

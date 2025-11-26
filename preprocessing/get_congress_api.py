@@ -1,6 +1,7 @@
 import csv
 import requests
 from pathlib import Path
+from tqdm import tqdm
 
 '''
 
@@ -54,7 +55,7 @@ def congress_api_legislators(member_path: str, congress_num: int):
 
         writer.writeheader()
 
-        for row in reader:
+        for row in tqdm(reader):
             member_bioguide = row["bioguide_id"]
 
             endpoint_url = f"{API_URL}/member/{member_bioguide}"
@@ -67,6 +68,11 @@ def congress_api_legislators(member_path: str, congress_num: int):
             response.raise_for_status()
 
             data = response.json()
+
+            if "member" not in data:
+                print(f"WARNING: Skipping for {row}")
+                continue
+
             member_terms = data["member"]["terms"]
 
             # the api returns "terms" as each congress they have served in
@@ -94,7 +100,7 @@ def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
 
         writer.writeheader()
 
-        for row in reader:
+        for row in tqdm(reader):
             bill_num_str = row['bill_number']
             bill_type, bill_num = split_bill_num_str(bill_num_str)
 
@@ -128,8 +134,8 @@ def congress_api_legislation(cleansed_rollcalls_path: str, congress_num: int):
 
             writer.writerow(api_row)
 
-congress_api_legislation("/Users/jakesquatrito/Downloads/H118_rollcalls_CLEANSED.csv", 118)
-congress_api_legislation("/Users/jakesquatrito/Downloads/S118_rollcalls_CLEANSED.csv", 118)
-
-congress_api_legislators("/Users/jakesquatrito/Downloads/H118_members.csv", 118)
-congress_api_legislators("/Users/jakesquatrito/Downloads/S118_members.csv", 118)
+# congress_api_legislation("/Users/jakesquatrito/Downloads/H118_rollcalls_CLEANSED.csv", 118)
+# congress_api_legislation("/Users/jakesquatrito/Downloads/S118_rollcalls_CLEANSED.csv", 118)
+#
+# congress_api_legislators("/Users/jakesquatrito/Downloads/H118_members.csv", 118)
+# congress_api_legislators("/Users/jakesquatrito/Downloads/S118_members.csv", 118)

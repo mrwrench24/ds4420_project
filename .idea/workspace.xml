@@ -4,7 +4,37 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="118 s/h files">
+      <change afterPath="$PROJECT_DIR$/datafiles/H117_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H117_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H117_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S117_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S117_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S117_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H118_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H118_members_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H118_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H118_rollcalls_CLEANSED_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H118_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H118_votes_CLEANSED.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H119_members_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H119_rollcalls_CLEANSED_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/H119_votes_CLEANSED.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/NN_HOUSE_118.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_118.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/NN_HOUSE_119.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_119.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/NN_SENATE_118.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_118.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/NN_SENATE_119.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_119.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S118_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S118_members_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S118_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S118_rollcalls_CLEANSED_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S118_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S118_votes_CLEANSED.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S119_members_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S119_rollcalls_CLEANSED_API.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/used/S119_votes_CLEANSED.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_member_votes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/get_congress_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/get_congress_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +85,7 @@
     &quot;Python.cleanse_member_votes.executor&quot;: &quot;Run&quot;,
     &quot;Python.get_congress_api.executor&quot;: &quot;Run&quot;,
     &quot;Python.neural_network.executor&quot;: &quot;Run&quot;,
+    &quot;Python.nn_pipeline.executor&quot;: &quot;Run&quot;,
     &quot;Python.nn_preprocess.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
@@ -69,6 +100,8 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/datafiles" />
+      <recent name="$PROJECT_DIR$/datafiles/used" />
+      <recent name="$PROJECT_DIR$/datafiles/NN_files" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -214,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764105640034</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="118 s/h files">
+      <option name="closed" value="true" />
+      <created>1764187469106</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1764187469106</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -234,6 +275,7 @@
     <MESSAGE value="small things, lower learning" />
     <MESSAGE value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
     <MESSAGE value="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
-    <option name="LAST_COMMIT_MESSAGE" value="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
+    <MESSAGE value="118 s/h files" />
+    <option name="LAST_COMMIT_MESSAGE" value="118 s/h files" />
   </component>
 </project>
