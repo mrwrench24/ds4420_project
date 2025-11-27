@@ -91,8 +91,46 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
   return(prediction)
 }
 
+# find distance between bill nominate points and user ideal points
+calculate_ideological_distance <- function(user, bill) {
+  user_pos <- c(user$nominate_dim1, user$nominate_dim2)
+  bill_pos <- c(bill$nominate_mid_1, bill$nominate_mid_2)
+  
+  # euclidean distance
+  distance <- sqrt(sum((user_pos - bill_pos)^2))
+  return(distance)
+}
+
+# *********************
+# FIGURE OUT THRESHOLD WE WANT
+# *********************
+
+# return 1 if voting for the bill, -1 if against
+# parameters:
+# - user: the user we are trying to find a vote prediction for
+# - bill: the bill we are trying to find the vote for 
+# - threshold: the threshold to compare the euclidean distance to
+predict_vote <- function(member_df, bill_df, member_id, bill_id, threshold = 0.4) {
+  member <- member_df[member_df$icpsr == member_id, ]
+  bill <- bill_df[bill_df$rollnumber == bill_id, ]
+  distance <- calculate_ideological_distance(member, bill)
+  
+  effective_threshold <- sqrt(bill$nominate_spread_1^2 + bill$nominate_spread_2^2)
+  effective_threshold <- threshold * (1 + spread_magnitude)
+  
+  print(effective_threshold)
+  print(distance <= effective_threshold)
+  print(distance)
+  # a lower distance than threshold means they are more likely to vote for the bill
+  return(distance <= threshold)
+}
+
+house_member_df <- read.csv("../data/H118_members.csv", check.names = FALSE)
+house_votes_df <- read.csv("../data/H118_rollcalls_CLEANSED.csv", check.names = FALSE)
+
 house_votes <- read.csv("house_cf_118.csv", row.names = 1, check.names = FALSE)
 senate_votes <- read.csv("senate_cf_118.csv", row.names = 1, check.names = FALSE)
+
 
 # example use for user with icpsr id 14854 and bill 118
 # user_collab_filter(house_votes, '14854','118', 'cosine', 200)
