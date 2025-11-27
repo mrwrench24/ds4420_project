@@ -150,9 +150,6 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     merged_df = merged_df[~merged_df["vote"].isin([0, 7, 8, 9])]
     merged_df["vote"] = merged_df["vote"].map(VOTE_MAPPING).astype(int)
 
-    print(merged_df.head())
-    print(merged_df["vote"].unique())
-
     # should be only 0, 1
     # print(merged_df["vote"].unique())
 
@@ -190,16 +187,16 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
 
     merged_df.to_csv(output_path, index=False)
 
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
-    "../datafiles/NN_FILES/NN_HOUSE_119.csv"
-)
-
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
-    "../datafiles/NN_files/NN_SENATE_119.csv"
-)
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
+#     "../datafiles/NN_FILES/NN_HOUSE_119.csv"
+# )
+#
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
+#     "../datafiles/NN_files/NN_SENATE_119.csv"
+# )

@@ -4,19 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="115 and 116 senate?">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="fixing bugs and datafiles">
+      <change afterPath="$PROJECT_DIR$/datafiles/H113_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H113_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H113_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H114_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H114_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H114_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S113_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S113_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S113_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S114_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S114_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S114_votes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_115.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_115.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_116.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_HOUSE_116.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_115.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_115.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_116.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/NN_files/NN_SENATE_116.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/H119_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/H119_members_API.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/H119_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/H119_rollcalls_CLEANSED_API.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/H119_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/H119_votes_CLEANSED.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/S119_members_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/S119_members_API.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/S119_rollcalls_CLEANSED_API.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/S119_rollcalls_CLEANSED_API.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/used/S119_votes_CLEANSED.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datafiles/S119_votes_CLEANSED.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_members_API.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_rollcalls_CLEANSED_API.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/H119_votes_CLEANSED.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_members_API.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_rollcalls_CLEANSED_API.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/datafiles/S119_votes_CLEANSED.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -264,7 +272,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764197372455</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="fixing bugs and datafiles">
+      <option name="closed" value="true" />
+      <created>1764198969791</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1764198969791</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -288,6 +304,7 @@
     <MESSAGE value="117 files, pipeline, bug fixes in nn_preprocess (always finding more malformed data :/)" />
     <MESSAGE value="bug fixes, 116" />
     <MESSAGE value="115 and 116 senate?" />
-    <option name="LAST_COMMIT_MESSAGE" value="115 and 116 senate?" />
+    <MESSAGE value="fixing bugs and datafiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixing bugs and datafiles" />
   </component>
 </project>
