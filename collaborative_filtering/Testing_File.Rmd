@@ -115,3 +115,33 @@ house_matrix[1:5, 1:5]
 ```{r}
 senate_matrix[1:5, 1:5]
 ```
+
+```{r}
+cosine_similarity <- function(u1, u2) {
+  dot_product <- sum(u1 * u2)
+  u1_magnitude <- sqrt(sum(u1 * u1))
+  u2_magnitude <- sqrt(sum(u2 * u2))
+  sim <- dot_product / (u1_magnitude * u2_magnitude)
+  return (sim)
+}
+
+build_cos_matrix <- function(votes_mat) {
+  n <- ncol(votes_mat)
+  sim <- matrix(0, n, n, dimnames = list(colnames(votes_mat), colnames(votes_mat)))
+  for (i in 1:n) {
+    for (j in i:n) {
+      s <- cosine_similarity(votes_mat[, i], votes_mat[, j])
+      sim[i, j] <- s
+      sim[j, i] <- s
+    }
+  }
+  sim
+}
+
+sim_scores <- build_cos_matrix(cbind(drg, st1, st2, st3, st4))
+sim_scores
+```
+
+```{r}
+
+```
