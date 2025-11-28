@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-    </list>
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="workspace" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -293,12 +290,26 @@
       <option name="project" value="LOCAL" />
       <updated>1764335314501</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="histograms, running models without voteview (no anecdotal yet)">
+      <option name="closed" value="true" />
+      <created>1764337058851</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1764337058851</updated>
+    </task>
+    <task id="LOCAL-00027" summary="workspace">
+      <option name="closed" value="true" />
+      <created>1764337670877</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1764337670877</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial readme scaffolding" />
-    <MESSAGE value="works for senate but more is needed on house" />
     <MESSAGE value="house works" />
     <MESSAGE value="progress towards preprocessing and outlining what else needs to be done. taking more of a &quot;pipelined&quot; approach but with individual files" />
     <MESSAGE value="more for api on legislation (which is the harder one)" />
@@ -322,6 +333,8 @@
     <MESSAGE value="removed many many intermediate / unneeded data files" />
     <MESSAGE value="small cleanup + more metrics" />
     <MESSAGE value="small cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="small cleanup" />
+    <MESSAGE value="histograms, running models without voteview (no anecdotal yet)" />
+    <MESSAGE value="workspace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
   </component>
 </project>
