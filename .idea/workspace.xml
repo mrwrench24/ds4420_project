@@ -4,29 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="fixing bugs and datafiles">
-      <change afterPath="$PROJECT_DIR$/datafiles/H113_members.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/H113_rollcalls.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/H113_votes.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/H114_members.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/H114_rollcalls.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/H114_votes.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S113_members.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S113_rollcalls.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S113_votes.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S114_members.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S114_rollcalls.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/datafiles/S114_votes.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/H119_members_API.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/H119_rollcalls_CLEANSED_API.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/H119_votes_CLEANSED.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/S119_members_API.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/S119_rollcalls_CLEANSED_API.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/datafiles/S119_votes_CLEANSED.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" afterDir="false" />
-    </list>
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="more" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -280,7 +258,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764198969791</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="more">
+      <option name="closed" value="true" />
+      <created>1764263613528</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1764263613528</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -305,6 +291,7 @@
     <MESSAGE value="bug fixes, 116" />
     <MESSAGE value="115 and 116 senate?" />
     <MESSAGE value="fixing bugs and datafiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing bugs and datafiles" />
+    <MESSAGE value="more" />
+    <option name="LAST_COMMIT_MESSAGE" value="more" />
   </component>
 </project>

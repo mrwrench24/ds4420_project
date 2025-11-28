@@ -1,0 +1,5 @@
+congress,chamber,rollnumber,date,session,clerk_rollnumber,yea_count,nay_count,nominate_mid_1,nominate_mid_2,nominate_spread_1,nominate_spread_2,nominate_log_likelihood,bill_number,vote_result,vote_desc,vote_question,dtl_desc,dem_cosponsors,rep_cosponsors
+109,House,37,2005-02-17,1,38,279,149,-0.252,0.042,-0.249,-0.094,-80.108,S5,Passed,Class Action Fairness Act,On Passage,,8,25
+109,House,64,2005-03-10,1,65,417,9,0.0,0.0,0.0,0.0,0.0,HR3,Passed,Transportation Equity Act: A Legacy for Users,On Passage,,39,40
+109,House,76,2005-03-16,1,77,388,43,-0.652,0.203,-0.298,-0.496,-69.554,HR1268,Passed,"Making emergency supplemental appropriations for the fiscal year ending September 30, 2005, and for other purposes",On Passage,,0,0
+109,House,107,2005-04-14,1,108,302,126,-0.309,-0.19,-0.39,-0.222,-73.613,S256,Passed,Bankruptcy Abuse Prevention and Consumer Protection Act,On Passage,,2,10

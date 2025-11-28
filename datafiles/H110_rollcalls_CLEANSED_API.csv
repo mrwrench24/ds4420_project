@@ -1,0 +1,40 @@
+congress,chamber,rollnumber,date,session,clerk_rollnumber,yea_count,nay_count,nominate_mid_1,nominate_mid_2,nominate_spread_1,nominate_spread_2,nominate_log_likelihood,bill_number,vote_result,vote_desc,vote_question,dtl_desc,dem_cosponsors,rep_cosponsors
+110,House,17,2007-01-10,1,18,315,116,0.394,0.031,0.344,0.108,-81.642,HR2,Passed,Fair Minimum Wage Act,On Passage,,214,8
+110,House,39,2007-01-18,1,40,264,163,0.202,0.142,0.242,0.298,-74.213,HR6,Passed,Creating Long-Term Energy Alternatives for the Nation Act,On Passage,,197,3
+110,House,71,2007-01-31,1,72,286,140,0.322,-0.045,0.209,0.139,-101.269,HJRES20,Passed,Further Continuing Appropriations for FY 2007,On Passage,,0,0
+110,House,101,2007-02-16,1,102,360,45,0.487,0.645,0.374,0.307,-61.134,HR976,Passed,Small Business Tax Relief Act,"On Motion to Suspend the Rules and Pass, as Amended",,58,14
+110,House,185,2007-03-23,1,186,218,212,0.051,0.999,0.252,-0.128,-62.792,HR1591,Passed,"Making emergency supplemental appropriations for fiscal year ending September 30, 2007, and for other purposes",On Passage,,0,0
+110,House,233,2007-04-19,1,234,394,25,0.641,-0.139,0.317,-0.091,-51.381,HR1495,Passed,Water Resources Development Act,On Passage,,1,2
+110,House,260,2007-04-25,1,261,420,3,0.0,0.0,0.0,0.0,0.0,HR493,Passed,Genetic Information Nondiscrimination Act,"On Motion to Suspend the Rules and Pass, as Amended",,129,95
+110,House,341,2007-05-14,1,342,268,100,0.357,0.411,0.201,0.125,-101.002,HR1124,Passed,To extend the District of Columbia College Access Act of 1999,On Motion to Suspend the Rules and Pass,,2,0
+110,House,367,2007-05-17,1,373,397,27,-0.655,0.007,-0.296,-0.476,-52.884,HR1585,Passed,National Defense Authorization Act,On Passage,,0,1
+110,House,391,2007-05-22,1,397,306,114,0.086,0.996,0.241,0.436,-105.107,S214,Passed,"To amend chapter 35 of title 28, United States Code, to preserve the independence of United States attorneys",On Motion to Suspend the Rules and Pass,,15,1
+110,House,437,2007-06-07,1,443,247,176,0.178,0.035,0.176,0.457,-112.177,S5,Passed,Stem Cell Research Enhancement Act,On Passage,,33,6
+110,House,485,2007-06-15,1,491,268,150,0.266,0.131,0.204,0.042,-93.094,HR2638,Passed,Department of Homeland Security Appropriations for FY 2008,On Passage,,0,0
+110,House,492,2007-06-15,1,498,409,2,0.0,0.0,0.0,0.0,0.0,HR2642,Passed,Military Construction and Veterans Affairs Appropriations for FY 2008,On Passage,,0,0
+110,House,536,2007-06-22,1,542,241,178,0.179,-0.008,0.186,0.451,-93.933,HR2764,Passed,"Department of State, Foreign Operations, and Related Programs Appropriations for FY 2008",On Passage,,0,0
+110,House,607,2007-07-11,1,613,273,149,0.286,0.127,1.22,0.708,-71.767,HR2669,Passed,College Cost Reduction Act of 2007,On Passage,,31,0
+110,House,680,2007-07-19,1,686,276,140,0.326,-0.15,0.305,0.15,-71.493,HR3043,Passed,"Making appropriations for the Department of Labor, Health and Human Services, and Education, and related agencies for fiscal year ending September 30, 2008, and for other purposes",On Passage,,0,0
+110,House,709,2007-07-24,1,715,268,153,0.293,-0.041,0.302,0.345,-63.877,HR3074,Passed,"Departments of Transportation, and Housing and Urban Development and Related Agencies Appropriations for FY 2008",On Passage,,0,0
+110,House,738,2007-07-26,1,744,281,142,0.202,0.974,0.272,0.182,-90.293,HR3093,Passed,"Departments of Commerce and Justice, and Science, and Related Agencies Appropriations for FY 2008",On Passage,,0,0
+110,House,750,2007-07-27,1,756,231,191,0.356,0.858,0.222,-0.339,-101.047,HR2419,Passed,"Farm, Nutrition, and Bioenergy Act",On Passage,,0,0
+110,House,757,2007-07-31,1,763,411,8,0.0,0.0,0.0,0.0,0.0,S1,Passed,Honest Leadership and Open Government Act of 2007,"On Motion to Suspend the Rules and Pass, as Amended",,12,4
+110,House,825,2007-08-04,1,832,241,172,0.125,0.139,0.3,0.686,-59.966,HR3221,Passed,"New Direction for Energy Independence, National Security, and Consumer Protection Act",On Passage,,18,0
+110,House,829,2007-08-04,1,836,227,183,-0.204,0.279,-0.327,-0.432,-51.348,S1927,Passed,Protect America Act,On Passage,,0,1
+110,House,904,2007-09-26,1,911,404,14,-0.677,0.019,-0.365,-0.304,-30.317,HJRES52,Passed,"Making continuing appropriations for the fiscal year 2008, and for other purposes.",On Passage,,0,0
+110,House,914,2007-09-27,1,921,263,146,0.283,0.084,0.205,-0.057,-97.362,HR3121,Passed,Flood Insurance Reform and Modernization Act of 2007,On Passage,,11,2
+110,House,1002,2007-10-25,1,1009,265,142,0.27,0.116,0.348,0.376,-55.363,HR3963,Passed,Children’s Health Insurance Program Reauthorization Act,On Passage,,22,1
+110,House,1053,2007-11-08,1,1060,285,132,-0.37,-0.056,-0.118,0.103,-205.448,HR3688,Passed,United States-Peru Trade Promotion Agreement,On Passage,,0,1
+110,House,1074,2007-11-09,1,1081,216,193,-0.119,-0.003,0.746,-0.425,-15.258,HR3996,Passed,Temporary Tax Relief Act of 2007,On Passage,,0,0
+110,House,1176,2007-12-19,1,1185,407,0,0.0,0.0,0.0,0.0,0.0,HR4040,Passed,Consumer Product Safety Modernization Act,"On Motion to Suspend the Rules and Pass, as Amended",,98,8
+110,House,1187,2008-01-16,2,11,369,46,-0.641,0.201,-0.268,-0.455,-74.817,HR4986,Passed,National Defense Authorization Act for Fiscal Year 2008,On Motion to Suspend the Rules and Pass,,0,1
+110,House,1201,2008-01-29,2,25,385,35,0.737,-0.525,0.196,0.026,-102.739,HR5140,Passed,Recovery Rebates and Economic Stimulus for the American People Act of 2008,On Motion to Suspend the Rules and Pass,,10,5
+110,House,1277,2008-03-05,2,101,268,148,0.343,-0.227,0.252,0.342,-79.609,HR1424,Passed,Paul Wellstone Mental Health and Addiction Equity Act,On Passage,,233,41
+110,House,1333,2008-04-02,2,158,308,116,0.354,0.512,0.25,0.103,-100.026,HR5501,Passed,"Tom Lantos and Henry J. Hyde United States Global Leadership Against HIV/AIDS, Tuberculosis, and Malaria Reauthorization Act",On Passage,,4,1
+110,House,1401,2008-04-29,2,226,291,117,0.274,0.522,1.054,1.307,-78.802,S2739,Passed,Consolidated Natural Resources Act of 2008,On Motion to Suspend the Rules and Pass,,0,0
+110,House,1519,2008-05-21,2,344,263,160,0.226,0.293,0.252,0.095,-70.878,HR6049,Passed,Renewable Energy and Job Creation Act,On Passage,,17,0
+110,House,1528,2008-05-22,2,353,306,110,0.333,-0.09,0.135,-0.469,-145.12,HR6124,Passed,"To provide for the continuation of agricultural and other programs of the Department of Agriculture through the fiscal year 2012, and for other purposes",On Motion to Suspend the Rules and Pass,,0,0
+110,House,1612,2008-06-20,2,437,293,129,-0.317,-0.044,-0.246,-0.425,-102.124,HR6304,Passed,FISA Amendments Act of 2008,On Passage,,0,2
+110,House,1718,2008-07-30,2,543,424,1,0.0,0.0,0.0,0.0,0.0,HR4040,Passed,Consumer Product Safety Commission Reform Act,On Motion to Suspend the Rules and Agree to the Conference Report,,98,8
+110,House,1806,2008-09-24,2,631,392,39,-0.741,0.23,-0.347,-0.856,-68.915,S3001,Passed,National Defense Authorization Act for Fiscal Year 2009,"On Motion to Suspend the Rules and Pass, as Amended",,0,0
+110,House,1837,2008-09-27,2,662,298,117,-0.387,0.002,-0.133,-0.018,-182.351,HR7081,Passed,United States-India Nuclear Cooperation Approval and Nonproliferation Enhancement Act,On Motion to Suspend the Rules and Pass,,6,2
