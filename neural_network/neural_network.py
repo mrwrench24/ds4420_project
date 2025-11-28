@@ -4,10 +4,10 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.losses import binary_crossentropy
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.metrics import BinaryCrossentropy
 
 from sklearn.model_selection import train_test_split
 
+import matplotlib.pyplot as plt
 import numpy as np
 
 # trying to have them in the same order as described in the nn_preprocess blurb
@@ -22,10 +22,16 @@ INPUT_COLUMNS = [
     "nominate_mid_1", "nominate_mid_2"
 ]
 
+INPUT_COLUMNS_NO_VV = [
+    "party_code_1", "party_code_2", "chamber",
+    "dem_cosponsors", "rep_cosponsors",
+    "pieces_cosponsored", "num_congresses"
+]
+
 OUTPUT_COLUMN = "vote"
 
-def make_model() -> Model:
-    inpx = Input(shape=(11,))
+def make_model(num_input_features: int) -> Model:
+    inpx = Input(shape=(num_input_features,))
 
     hid_layer = Dense(32, activation='relu')(inpx)
     hid_layer2 = Dense(48, activation='relu')(hid_layer)
@@ -36,7 +42,7 @@ def make_model() -> Model:
 
     model = Model([inpx], out)
 
-    model.compile(optimizer=Adam(learning_rate=0.0008),
+    model.compile(optimizer=Adam(learning_rate=0.0015),
                   # AKA Log loss
                   loss=binary_crossentropy,
                   # use accuracy and mse cautiously
@@ -109,7 +115,7 @@ def anecdotal_analysis(model):
     print(f"Gaetz Prob: {model.predict(gaetz)}")
 
 
-def run_nn(nn_file_paths: list[str]):
+def run_nn(nn_file_paths: list[str], use_voteview: bool):
     data_df = pd.DataFrame()
 
     for file_path in nn_file_paths:
@@ -119,8 +125,10 @@ def run_nn(nn_file_paths: list[str]):
 
     train_data, test_data = train_test_split(data_df, test_size=0.2)
 
-    X_train = train_data[INPUT_COLUMNS]
-    X_test = test_data[INPUT_COLUMNS]
+    columns = INPUT_COLUMNS if use_voteview else INPUT_COLUMNS_NO_VV
+
+    X_train = train_data[columns]
+    X_test = test_data[columns]
 
     Y_train = train_data[OUTPUT_COLUMN]
     Y_test = test_data[OUTPUT_COLUMN]
@@ -129,7 +137,7 @@ def run_nn(nn_file_paths: list[str]):
     print(Y_train.value_counts())
     print(Y_test.value_counts())
 
-    model = make_model()
+    model = make_model(len(columns))
 
     model.fit(X_train, Y_train, epochs=200)
 
@@ -139,7 +147,12 @@ def run_nn(nn_file_paths: list[str]):
     print(f"Test MSE: {score[2]}")
     print(f"Test AUC: {score[3]}")
 
-    anecdotal_analysis(model)
+    preds = model.predict(X_test)
+    plt.hist(preds, bins=20)
+    plt.title(f"Distribution of Test Predictions: Yes = {Y_test.value_counts()[1]}, Nos = {Y_test.value_counts()[0]}")
+    plt.show()
+
+    # anecdotal_analysis(model)
 
 run_nn([
     "../datafiles/NN_files/NN_HOUSE_110.csv",
@@ -162,5 +175,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-])
+], use_voteview=False)
 
