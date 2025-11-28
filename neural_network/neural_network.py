@@ -37,13 +37,10 @@ def make_model() -> Model:
     model = Model([inpx], out)
 
     model.compile(optimizer=Adam(learning_rate=0.0008),
+                  # AKA Log loss
                   loss=binary_crossentropy,
-                  # accuracy is probably not the best, but i want to see how it does? for now?
-                  metrics=[
-                      'accuracy',
-                      'mse',
-                      'auc'
-                  ])
+                  # use accuracy and mse cautiously
+                  metrics=['accuracy', 'mse', 'auc'])
 
     return model
 

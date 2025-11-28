@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="removed many many intermediate / unneeded data files">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764332134435</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="small cleanup + more metrics">
+      <option name="closed" value="true" />
+      <created>1764334296850</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1764334296850</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -305,6 +312,7 @@
     <MESSAGE value="fixing bugs and datafiles" />
     <MESSAGE value="more" />
     <MESSAGE value="removed many many intermediate / unneeded data files" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed many many intermediate / unneeded data files" />
+    <MESSAGE value="small cleanup + more metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="small cleanup + more metrics" />
   </component>
 </project>
