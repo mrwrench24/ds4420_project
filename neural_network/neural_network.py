@@ -40,7 +40,9 @@ def make_model() -> Model:
                   loss=binary_crossentropy,
                   # accuracy is probably not the best, but i want to see how it does? for now?
                   metrics=[
-                      'accuracy'
+                      'accuracy',
+                      'mse',
+                      'auc'
                   ])
 
     return model
@@ -137,10 +139,22 @@ def run_nn(nn_file_paths: list[str]):
     score = model.evaluate(X_test, Y_test)
     print(f"Test Binary Cross-Entropy: {score[0]}")
     print(f"Test Accuracy: {score[1]}")
+    print(f"Test MSE: {score[2]}")
+    print(f"Test AUC: {score[3]}")
 
     anecdotal_analysis(model)
 
 run_nn([
+    "../datafiles/NN_files/NN_HOUSE_110.csv",
+    "../datafiles/NN_files/NN_SENATE_110.csv",
+    "../datafiles/NN_files/NN_HOUSE_111.csv",
+    "../datafiles/NN_files/NN_SENATE_111.csv",
+    "../datafiles/NN_files/NN_HOUSE_112.csv",
+    "../datafiles/NN_files/NN_SENATE_112.csv",
+    "../datafiles/NN_files/NN_HOUSE_113.csv",
+    "../datafiles/NN_files/NN_SENATE_113.csv",
+    "../datafiles/NN_files/NN_HOUSE_114.csv",
+    "../datafiles/NN_files/NN_SENATE_114.csv",
     "../datafiles/NN_files/NN_HOUSE_115.csv",
     "../datafiles/NN_files/NN_SENATE_115.csv",
     "../datafiles/NN_files/NN_HOUSE_116.csv",

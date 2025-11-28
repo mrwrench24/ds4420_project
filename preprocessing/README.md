@@ -21,3 +21,10 @@ number of pieces of legislation that they cosponsored.
 4. Neural Network Preprocessing - Put the final touches on the dataset. Combines the relevant members, rollcalls,
 and votes dataset to create a single .csv where each row is a complete, singular input to the neural network. Also performs
 typical preprocessing - one-hot encoding, scaling, etc. 
+
+## Pipeline
+
+You can download the six relevant files (member ideology, congressional votes, and members' votes, for both house and senate)
+for a specific congress, put them in `/datafiles`, and then run `nn_pipeline.py`. It will run the preprocessing
+steps in order and put the `NN_{chamber}_{number}.csv` in `/datafiles/NN_files`. (It will take a bit of time 
+because of the calls to the Congress.gov API.)
