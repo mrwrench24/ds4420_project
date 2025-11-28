@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
     </list>
@@ -26,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="DP-15-nn-impl" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,7 +63,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#6 on DP-15-nn-impl",
+    "git-widget-placeholder": "DP-16-neuralnet-experiments",
     "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
   }
 }]]></component>
@@ -285,7 +285,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764334296850</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="small cleanup">
+      <option name="closed" value="true" />
+      <created>1764335314501</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1764335314501</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -313,6 +321,7 @@
     <MESSAGE value="more" />
     <MESSAGE value="removed many many intermediate / unneeded data files" />
     <MESSAGE value="small cleanup + more metrics" />
-    <option name="LAST_COMMIT_MESSAGE" value="small cleanup + more metrics" />
+    <MESSAGE value="small cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="small cleanup" />
   </component>
 </project>
