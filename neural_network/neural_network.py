@@ -72,13 +72,13 @@ def anecdotal_analysis(model):
         0.35, 0.124, -0.505, -0.258, 0.966
     ]).reshape(1, -1)
 
-    print(f"Murkowski Prob: {model.predict(murkowski)}")
+    print(f"Murkowski Prob: {model.predict(murkowski, verbose=0)}")
     # a note - voteview assigns their own probabilities to votes.
     # so even though the collins probability is usually around 90% even though she
     # voted no, it seems like, statistically, it was a surprise.
     # this was a vote that i just chose on my own - so sometimes there will be surprises!
     # i'd want to make sure that democrats aren't predicted as voting on it...
-    print(f"Collins Prob: {model.predict(collins)}")
+    print(f"Collins Prob: {model.predict(collins, verbose=0)}")
 
     # AOC: icpsr 21949, voted no, party code = 0,0, house member
     # cosponsored = 0.02082666, congresses = 0.075
@@ -91,7 +91,7 @@ def anecdotal_analysis(model):
 
     # giving no chance that AOC would vote for the bill
     # so the model is allowed to go "all in" - not just wavering etc.
-    print(f"AOC Prob: {model.predict(aoc)}")
+    print(f"AOC Prob: {model.predict(aoc, verbose=0)}")
 
     print("----------------")
 
@@ -114,11 +114,11 @@ def anecdotal_analysis(model):
         0.075, 0.593, -0.643, 0.277, -0.228
     ]).reshape(1, -1)
 
-    print(f"Warren Prob: {model.predict(warren)}")
-    print(f"Gaetz Prob: {model.predict(gaetz)}")
+    print(f"Warren Prob: {model.predict(warren, verbose=0)}")
+    print(f"Gaetz Prob: {model.predict(gaetz, verbose=0)}")
 
 
-def run_nn(nn_file_paths: list[str], use_voteview: bool):
+def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
     data_df = pd.DataFrame()
 
     for file_path in nn_file_paths:
@@ -141,8 +141,18 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool):
     print(Y_test.value_counts())
 
     model = make_model(len(columns))
+    training = model.fit(X_train, Y_train, epochs=num_epochs)
 
-    model.fit(X_train, Y_train, epochs=2)
+    plt.plot(training.history['accuracy'], label='accuracy')
+    plt.plot(training.history['mse'], label='mse')
+    plt.plot(training.history['auc'], label='auc')
+    plt.title("Training Metrics at Epoch")
+    plt.legend()
+    plt.show()
+
+    plt.plot(training.history['loss'], label='loss')
+    plt.title("Loss (BCE / Log-Loss) at Epoch")
+    plt.show()
 
     score = model.evaluate(X_test, Y_test)
     print(f"Test Binary Cross-Entropy: {score[0]}")
@@ -159,7 +169,7 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool):
 
     model_id = str(uuid.uuid1())
     print(f"Model will be saved as {model_id}.")
-    model.save(f"{model_id}.keras")
+    model.save(f"models/{model_id}.keras")
 
 run_nn([
     "../datafiles/NN_files/NN_HOUSE_110.csv",
@@ -182,5 +192,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=False)
+], use_voteview=True, num_epochs=200)
 
