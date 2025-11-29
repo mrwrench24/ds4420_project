@@ -64,4 +64,33 @@ def anecdotal_analysis(model):
     print(f"Warren Prob: {model.predict(warren, verbose=0)}")
     print(f"Gaetz Prob: {model.predict(gaetz, verbose=0)}")
 
-    print("-------------------------")
+    print("------- Affordable Care Act ---------")
+
+    # anchors - nancy pelosi a strong yes, mitch mcconnell a strong no
+    pelosi = np.array([
+        0.0, 0.0, 0.0, 0.0691588785046729, 0.005607476635514020,
+        0.06732, 0.275, -0.489, -0.179, 0.003, -0.259
+    ]).reshape(1, -1)
+
+    mcconnell = np.array([
+        0.0, 1.0, 1.0, 0.0691588785046729, 0.005607476635514020,
+        0.03762666666666670, 0.3, 0.402, 0.017, 0.003, -0.259
+    ]).reshape(1, -1)
+
+    print(f"Pelosi (Strong Yes) Prob: {model.predict(pelosi, verbose=0)}")
+    print(f"McConnell (Strong No) Prob: {model.predict(mcconnell, verbose=0)}")
+
+    # Swing vote YES - Ben Nelson of Nebraska
+    nelson = np.array([
+        0.0, 0.0, 1.0, 0.0691588785046729, 0.005607476635514020,
+        0.015013333333333300, 0.1, -0.03, 0.588, 0.003, -0.259
+    ]).reshape(1, -1)
+
+    # Swing vote NO - Olympia Snowe
+    snowe = np.array([
+        0.0, 1.0, 1.0, 0.0691588785046729, 0.005607476635514020,
+        0.07018666666666670, 0.375, 0.091, -0.548, 0.003, -0.259
+    ]).reshape(1, -1)
+
+    print(f"Nelson (Swing YES) Prob: {model.predict(nelson, verbose=0)}")
+    print(f"Snowe (Swing NO) Prob: {model.predict(snowe, verbose=0)}")

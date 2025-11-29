@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="resolved conflicts + keeping track of training metrics">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/cleanse_bills.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,11 +312,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764337670877</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="resolved conflicts + keeping track of training metrics">
+      <option name="closed" value="true" />
+      <created>1764444995894</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764444995894</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="house works" />
     <MESSAGE value="progress towards preprocessing and outlining what else needs to be done. taking more of a &quot;pipelined&quot; approach but with individual files" />
     <MESSAGE value="more for api on legislation (which is the harder one)" />
     <MESSAGE value="congress api preprocessing for cleansed legislative datasets- get the number of cosponsors" />
@@ -339,6 +348,7 @@
     <MESSAGE value="small cleanup" />
     <MESSAGE value="histograms, running models without voteview (no anecdotal yet)" />
     <MESSAGE value="workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+    <MESSAGE value="resolved conflicts + keeping track of training metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolved conflicts + keeping track of training metrics" />
   </component>
 </project>
