@@ -20,7 +20,7 @@ calculate_ideological_distance <- function(user, bill) {
 # - user: the user we are trying to find a vote prediction for
 # - bill: the bill we are trying to find the vote for 
 # - threshold: the threshold to compare the euclidean distance to
-predict_vote <- function(member_df, bill_df, member_id, bill_id, threshold = 0.4) {
+prelim_vote <- function(member_df, bill_df, member_id, bill_id, threshold = 0.4) {
   member <- member_df[member_df$icpsr == member_id, ]
   bill <- bill_df[bill_df$rollnumber == bill_id, ]
   distance <- calculate_ideological_distance(member, bill)
@@ -73,7 +73,7 @@ plot_bill_votes_nominate <- function(member_df, votes_mat, bill_df, bill_id) {
 # house_member_df <- read.csv("../data/H118_members.csv", check.names = FALSE)
 # house_votes_df <- read.csv("../data/H118_rollcalls_CLEANSED.csv", check.names = FALSE)
 
-# predict_vote(house_member_df, house_votes_df, '14873', '231')
+# prelim_vote(house_member_df, house_votes_df, '14873', '231')
 
 # for plotting (bill 118 in example):
 # house_votes <- read.csv("house_cf_118.csv", row.names = 1, check.names = FALSE)
