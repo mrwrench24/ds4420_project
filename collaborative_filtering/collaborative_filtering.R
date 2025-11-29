@@ -1,5 +1,3 @@
-library(ggplot2)
-
 # cosine similarity function
 cosine_similarity <- function(u1, u2) {
   dot_product <- sum(u1 * u2, na.rm = T)
@@ -68,49 +66,70 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
   # need to rename the bill columns by user id, otherwise the indexing won't work
   names(bill_votes) <- rownames(votes_df) 
   
-  # find users that votes on this bill and remove target_user
+  # find users that votes on this bill and remove target_user also 
   valid_users <- which(!is.na(bill_votes))
-  valid_users <- valid_users[valid_users != target_user]
+  valid_user_ids <- rownames(votes_df)[valid_users]
+  valid_user_ids <- valid_user_ids[valid_user_ids != target_user]
   
-  # mark self-similarity as NA to avoid accounting for it
   # similarities for target user
-  user_similarities <- sim_matrix[target_user, ]
-  user_similarities[target_user] <- NA
-  user_similarities <- user_similarities[valid_users]
+  user_similarities <- sim_matrix[target_user, valid_user_ids]
 
   # top-k neighbors
   sorted_user_sim <- sort(user_similarities, decreasing = TRUE)
+  
+  # if k is too big, we get an index error so this will be a way to use min k
+  k <- min(k, length(sorted_user_sim))
   top_k_user_sim <- sorted_user_sim[1:k]
   
   # top-k votes
-  bill_votes <- bill_votes[valid_users]
-
+  bill_votes <- bill_votes[valid_user_ids]
+  
   top_k_votes <- bill_votes[names(top_k_user_sim)]
 
   # weighted prediction (should not have any NA at this point, but just in case we do)
-  prediction <- sum(top_k_user_sim * top_k_votes, na.rm = TRUE) /
-    sum(abs(top_k_user_sim), na.rm = TRUE)
+  # checking if the denominator would be 0 and returning NA if so
+  div <- sum(abs(top_k_user_sim), na.rm = TRUE)
+  if (div == 0) {
+    return(NA)
+  }
+  prediction <- sum(top_k_user_sim * top_k_votes, na.rm = TRUE) / div
   return(prediction)
 }
 
-# find distance between bill nominate points and user ideal points
-calculate_ideological_distance <- function(user, bill) {
-  user_pos <- c(user$nominate_dim1, user$nominate_dim2)
-  bill_pos <- c(bill$nominate_mid_1, bill$nominate_mid_2)
+# this function builds on top of user_collab_filter and makes it more generic
+# so that by passing in the values and congress and chamber, we pull the data 
+# through the function and process the CF automatically for prediction
+final_user_cf <- function(congress, chamber, 
+                            icpsr, bill, metric, 
+                            k, data_dir = "../data", 
+                            mat_dir = "../collaborative_filtering") {
+  votes_df_dir <- file.path(
+    data_dir, 
+    paste0(chamber, congress, "_rollcalls_CLEANSED.csv"))
   
-  # euclidean distance
-  distance <- sqrt(sum((user_pos - bill_pos)^2))
-  return(distance)
+  member_df_dir <- file.path(
+    data_dir, 
+    paste0(chamber, congress, "_members.csv"))
+  
+  mat <- file.path(
+    mat_dir, 
+    paste0(chamber, congress, "_cf.csv"))
+  
+  member_df <- read.csv(member_df_dir, check.names = FALSE)
+  votes_df <- read.csv(votes_df_dir, check.names = FALSE)
+  votes_mat <- read.csv(mat, row.names = 1, check.names = FALSE)
+  
+  pred <- user_collab_filter(votes_mat, icpsr, bill, metric, k)
+  
+  return(pred)
 }
 
-house_member_df <- read.csv("../data/H118_members.csv", check.names = FALSE)
-house_votes_df <- read.csv("../data/H118_rollcalls_CLEANSED.csv", check.names = FALSE)
+# example
+final_user_cf(118, 'S', '41301','146', 'cosine', 8)
 
-house_votes <- read.csv("house_cf_118.csv", row.names = 1, check.names = FALSE)
-senate_votes <- read.csv("senate_cf_118.csv", row.names = 1, check.names = FALSE)
-
-
-# example use for user with icpsr id 14854 and bill 118
+# example use for user with icpsr id 14854 and bill 118 using specific func
+# house_votes <- read.csv("H118_cf.csv", row.names = 1, check.names = FALSE)
+# senate_votes <- read.csv("S118_cf.csv", row.names = 1, check.names = FALSE)
 # user_collab_filter(house_votes, '14854','118', 'cosine', 200)
 # user_collab_filter(senate_votes, '15021','212', 'L2', 20)
 

@@ -3,6 +3,17 @@
 # to predict strong votes on a new bill based on ideological points, so that we 
 # we could use them as a base for new bills before looking at other users but we 
 # found it not to give good predictions 
+library(ggplot2)
+
+# find distance between bill nominate points and user ideal points
+calculate_ideological_distance <- function(user, bill) {
+  user_pos <- c(user$nominate_dim1, user$nominate_dim2)
+  bill_pos <- c(bill$nominate_mid_1, bill$nominate_mid_2)
+  
+  # euclidean distance
+  distance <- sqrt(sum((user_pos - bill_pos)^2))
+  return(distance)
+}
 
 # return 1 if voting for the bill, -1 if against
 # parameters:

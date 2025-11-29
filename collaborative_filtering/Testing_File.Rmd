@@ -143,5 +143,48 @@ sim_scores
 ```
 
 ```{r}
+library(ggplot2)
+
+bill_id <- 231
+
+# Get bill data
+bill_data <- house_votes[house_votes$rollnumber == bill_id, ]
+bill_point <- c(bill_data$nominate_mid_1, bill_data$nominate_mid_2)
+
 
 ```
+
+```{r}
+house_mat <- read.csv("house_cf_118.csv", row.names = 1, check.names = FALSE)
+# Get ICPSR IDs of yea (1) and nay (-1) voters
+yea_ids <- c()
+nay_ids <- c()
+if (as.character(bill_id) %in% colnames(house_mat)) {
+  yea_ids <- rownames(house_mat)[house_mat[, as.character(bill_id)] == 1]
+  nay_ids <- rownames(house_mat)[house_mat[, as.character(bill_id)] == -1]
+}
+# Add a column to indicate vote type
+house_members <- house_votes %>%
+  mutate(vote = case_when(
+    icpsr %in% yea_ids ~ "Yea",
+    icpsr %in% nay_ids ~ "Nay",
+    TRUE ~ "Other"
+  ))
+
+# Plot
+ggplot(house_members, aes(x = nominate_dim1, y = nominate_dim2)) +
+  geom_point(aes(color = vote), alpha = 0.7) +
+  scale_color_manual(values = c("Yea" = "green", "Nay" = "red", "Other" = "lightgray")) +
+  geom_point(aes(x = bill_point[1], y = bill_point[2]), color = "blue", shape = 8, size = 5) +
+  labs(
+    x = "Nominate Dimension 1",
+    y = "Nominate Dimension 2",
+    title = paste("Ideological Space with Bill", bill_id, "Location"),
+    color = "Vote"
+  ) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "black", size = 0.5) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "black", size = 0.5) +
+  theme_minimal()
+```
+
+
