@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="workspace" />
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,6 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "DP-16-neuralnet-experiments",
     "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
   }

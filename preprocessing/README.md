@@ -28,3 +28,5 @@ You can download the six relevant files (member ideology, congressional votes, a
 for a specific congress, put them in `/datafiles`, and then run `nn_pipeline.py`. It will run the preprocessing
 steps in order and put the `NN_{chamber}_{number}.csv` in `/datafiles/NN_files`. (It will take a bit of time 
 because of the calls to the Congress.gov API.)
+
+Run as `python -m preprocessing.nn_pipeline.py`.

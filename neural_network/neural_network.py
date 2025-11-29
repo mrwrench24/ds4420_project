@@ -1,3 +1,5 @@
+import uuid
+
 import pandas as pd
 
 from tensorflow.keras.models import Model
@@ -6,6 +8,7 @@ from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.optimizers import Adam
 
 from sklearn.model_selection import train_test_split
+from anecdotal_analysis import anecdotal_analysis
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -139,7 +142,7 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool):
 
     model = make_model(len(columns))
 
-    model.fit(X_train, Y_train, epochs=200)
+    model.fit(X_train, Y_train, epochs=2)
 
     score = model.evaluate(X_test, Y_test)
     print(f"Test Binary Cross-Entropy: {score[0]}")
@@ -153,6 +156,10 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool):
     plt.show()
 
     # anecdotal_analysis(model)
+
+    model_id = str(uuid.uuid1())
+    print(f"Model will be saved as {model_id}.")
+    model.save(f"{model_id}.keras")
 
 run_nn([
     "../datafiles/NN_files/NN_HOUSE_110.csv",
