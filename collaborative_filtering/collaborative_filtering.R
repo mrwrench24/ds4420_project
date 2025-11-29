@@ -3,6 +3,11 @@ cosine_similarity <- function(u1, u2) {
   dot_product <- sum(u1 * u2, na.rm = T)
   u1_magnitude <- sqrt(sum(u1 * u1, na.rm = T))
   u2_magnitude <- sqrt(sum(u2 * u2, na.rm = T))
+  
+  # avoiding division by 0 
+  if (u1_magnitude == 0 || u2_magnitude == 0) {
+    return(NA)
+  }
   sim <- dot_product / (u1_magnitude * u2_magnitude)
   return (sim)
 }
@@ -53,6 +58,10 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
     stop('user does not exist or has not voted on enough legislations')
   }
   
+  if (!(target_bill %in% colnames(votes_df))) {
+    stop("target bill not found in votes matrix")
+  }
+  
   # we need to use the transpose so that users are the columns
   sim_matrix <- build_similarity_matrix(t(votes_df), similarity)
   
@@ -75,7 +84,7 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
   user_similarities <- sim_matrix[target_user, valid_user_ids]
 
   # top-k neighbors
-  sorted_user_sim <- sort(user_similarities, decreasing = TRUE)
+  sorted_user_sim <- sort(user_similarities, decreasing = TRUE, na.last = NA)
   
   # if k is too big, we get an index error so this will be a way to use min k
   k <- min(k, length(sorted_user_sim))
@@ -101,30 +110,21 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
 # through the function and process the CF automatically for prediction
 final_user_cf <- function(congress, chamber, 
                             icpsr, bill, metric, 
-                            k, data_dir = "../data", 
+                            k, 
                             mat_dir = "../collaborative_filtering") {
-  votes_df_dir <- file.path(
-    data_dir, 
-    paste0(chamber, congress, "_rollcalls_CLEANSED.csv"))
   
-  member_df_dir <- file.path(
-    data_dir, 
-    paste0(chamber, congress, "_members.csv"))
-  
+  # get the file path by concatenating the string to _cf
   mat <- file.path(
     mat_dir, 
     paste0(chamber, congress, "_cf.csv"))
   
-  member_df <- read.csv(member_df_dir, check.names = FALSE)
-  votes_df <- read.csv(votes_df_dir, check.names = FALSE)
   votes_mat <- read.csv(mat, row.names = 1, check.names = FALSE)
-  
   pred <- user_collab_filter(votes_mat, icpsr, bill, metric, k)
-  
   return(pred)
 }
 
 # example
+final_user_cf(118, 'H', '14854','118', 'cosine', 25)
 final_user_cf(118, 'S', '41301','146', 'cosine', 8)
 
 # example use for user with icpsr id 14854 and bill 118 using specific func
