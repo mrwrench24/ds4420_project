@@ -2,6 +2,8 @@ import csv
 from pathlib import Path
 
 '''
+Data Processing, Step 1:
+
 This code will cleanse a "rollcalls" CSV from VoteView.
 
 The VoteView data, as is, includes votes / data on many procedural motions, and
