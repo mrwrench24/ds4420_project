@@ -1,16 +1,16 @@
 import uuid
+import os
 
 import pandas as pd
+import matplotlib.pyplot as plt
 
 from tensorflow.keras.models import Model
 from tensorflow.keras.losses import binary_crossentropy
 from tensorflow.keras.layers import Dense, Input
 from tensorflow.keras.optimizers import Adam
-
 from sklearn.model_selection import train_test_split
-from anecdotal_analysis import anecdotal_analysis
 
-import matplotlib.pyplot as plt
+from anecdotal_analysis import anecdotal_analysis
 
 INPUT_COLUMNS = [
     "party_code_1", "party_code_2", "chamber",
@@ -30,6 +30,9 @@ INPUT_COLUMNS_NO_VV = [
 
 OUTPUT_COLUMN = "vote"
 
+'''
+Creates a model for the provided number of features (one-dimensional).
+'''
 def make_model(num_input_features: int) -> Model:
     inpx = Input(shape=(num_input_features,))
 
@@ -50,8 +53,18 @@ def make_model(num_input_features: int) -> Model:
 
     return model
 
+'''
+Trains a Neural Network using the information in the provided NN file paths.
+The network is trained for the provided number of epochs and either uses voteview dimensions
+(for lawmakers and median leg. support) or not. The dimensions / composition of the model is fixed. 
 
+Saves the model, relevant plots, and the anecdotal analysis to a folder in ./runs/{UUID}/
+'''
 def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
+    run_id = str(uuid.uuid1())
+    os.makedirs(f'./runs/{run_id}', exist_ok=True)
+    print("Run ID: ", run_id)
+
     data_df = pd.DataFrame()
 
     for file_path in nn_file_paths:
@@ -81,28 +94,31 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
     plt.plot(training.history['auc'], label='auc')
     plt.title("Training Metrics at Epoch")
     plt.legend()
-    plt.show()
+    plt.savefig(f'./runs/{run_id}/extra_metrics.png', dpi=300)
 
+    plt.clf()
     plt.plot(training.history['loss'], label='loss')
     plt.title("Loss (BCE / Log-Loss) at Epoch")
-    plt.show()
+    plt.savefig(f'./runs/{run_id}/loss.png', dpi=300)
 
     score = model.evaluate(X_test, Y_test)
-    print(f"Test Binary Cross-Entropy: {score[0]}")
-    print(f"Test Accuracy: {score[1]}")
-    print(f"Test MSE: {score[2]}")
-    print(f"Test AUC: {score[3]}")
+
+    with open(f'./runs/{run_id}/test_info.text', 'w') as test_info_file:
+        test_info_file.write(f"Test Binary Cross-Entropy: {score[0]}")
+        test_info_file.write(f"\nTest Accuracy: {score[1]}")
+        test_info_file.write(f"\nTest MSE: {score[2]}")
+        test_info_file.write(f"\nTest AUC: {score[3]}")
+
+        anecdotal_analysis(model, test_info_file, use_voteview=use_voteview)
 
     preds = model.predict(X_test)
+
+    plt.clf()
     plt.hist(preds, bins=20)
     plt.title(f"Distribution of Test Predictions: Yes = {Y_test.value_counts()[1]}, Nos = {Y_test.value_counts()[0]}")
-    plt.show()
+    plt.savefig(f'./runs/{run_id}/predictions_hist.png', dpi=300)
 
-    anecdotal_analysis(model, use_voteview=use_voteview)
-
-    model_id = str(uuid.uuid1())
-    print(f"Model will be saved as {model_id}.")
-    model.save(f"models/{model_id}.keras")
+    model.save(f"./runs/{run_id}/model.keras")
 
 run_nn([
     "../datafiles/NN_files/NN_HOUSE_107.csv",
@@ -131,5 +147,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=True, num_epochs=100)
+], use_voteview=True, num_epochs=5)
 

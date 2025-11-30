@@ -2,18 +2,10 @@ import keras
 import numpy as np
 
 '''
-Provide tuples of lawmaker names and the corresponding vector for them and 
-prints out predictions for each. 
+Write the probabilities of a few votes (to the provided output file) to see *what* the model is actually 
+outputting for them.
 '''
-def make_print_predictions(lawmakers: list[tuple[str, np.array]], model: keras.Model):
-    for lawmaker, vector in lawmakers:
-        pred = model.predict(vector, verbose=0)
-        print(f"{lawmaker} Prob: {pred}")
-
-'''
-Print out a few votes to see *what* the model is actually outputting for them.
-'''
-def anecdotal_analysis(model: keras.Model, use_voteview: bool):
+def anecdotal_analysis(model: keras.Model, output_file, use_voteview: bool):
     lawmakers: list[tuple[str, np.array]] = []
 
     # -- 1. Big Beautiful Bill --
@@ -100,4 +92,6 @@ def anecdotal_analysis(model: keras.Model, use_voteview: bool):
         for i, (name, vector) in enumerate(lawmakers):
             lawmakers[i] = (name, vector[:, :7])
 
-    make_print_predictions(lawmakers, model)
+    for lawmaker, vector in lawmakers:
+        pred = model.predict(vector, verbose=0)
+        output_file.write(f"\n{lawmaker} Prob: {pred}")
