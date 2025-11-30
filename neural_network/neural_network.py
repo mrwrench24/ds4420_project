@@ -11,8 +11,6 @@ from sklearn.model_selection import train_test_split
 from anecdotal_analysis import anecdotal_analysis
 
 import matplotlib.pyplot as plt
-import numpy as np
-
 
 INPUT_COLUMNS = [
     "party_code_1", "party_code_2", "chamber",
@@ -100,7 +98,7 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
     plt.title(f"Distribution of Test Predictions: Yes = {Y_test.value_counts()[1]}, Nos = {Y_test.value_counts()[0]}")
     plt.show()
 
-    anecdotal_analysis(model)
+    anecdotal_analysis(model, use_voteview=use_voteview)
 
     model_id = str(uuid.uuid1())
     print(f"Model will be saved as {model_id}.")
@@ -127,5 +125,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=True, num_epochs=200)
+], use_voteview=True, num_epochs=2)
 
