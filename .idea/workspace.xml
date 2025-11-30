@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="all NN files from the 21st century">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-    </list>
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="lol" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -344,12 +340,26 @@
       <option name="project" value="LOCAL" />
       <updated>1764519891931</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="everything is so very nice and organized inside of a folder when you train the model">
+      <option name="closed" value="true" />
+      <created>1764537434170</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1764537434170</updated>
+    </task>
+    <task id="LOCAL-00033" summary="lol">
+      <option name="closed" value="true" />
+      <created>1764537467226</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764537467226</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="congress api functions completed" />
-    <MESSAGE value="cleanup + some datafiles for the 119th congress" />
     <MESSAGE value="prepping for last preprocessing step" />
     <MESSAGE value="lots of neural net preprocessing" />
     <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
@@ -373,6 +383,8 @@
     <MESSAGE value="more anecdotes," />
     <MESSAGE value="support for anecdotal analysis with and without voteview being used" />
     <MESSAGE value="all NN files from the 21st century" />
-    <option name="LAST_COMMIT_MESSAGE" value="all NN files from the 21st century" />
+    <MESSAGE value="everything is so very nice and organized inside of a folder when you train the model" />
+    <MESSAGE value="lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="lol" />
   </component>
 </project>
