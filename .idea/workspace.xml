@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +30,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="DP-13-nn-preprocess" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,10 +61,14 @@
     "Python.cleanse_bills.executor": "Run",
     "Python.cleanse_member_votes.executor": "Run",
     "Python.get_congress_api.executor": "Run",
+    "Python.neural_network.executor": "Run",
+    "Python.nn_pipeline.executor": "Run",
     "Python.nn_preprocess.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "#6 on DP-15-nn-impl",
     "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
   }
 }]]></component>
@@ -67,6 +78,9 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/datafiles" />
+      <recent name="$PROJECT_DIR$/datafiles/used" />
+      <recent name="$PROJECT_DIR$/preprocessing" />
+      <recent name="$PROJECT_DIR$/datafiles/NN_files" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -172,7 +186,111 @@
       <option name="project" value="LOCAL" />
       <updated>1763923773230</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="first pass of a neural network that is... working... remarkably... well?">
+      <option name="closed" value="true" />
+      <created>1764089215617</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1764089215617</updated>
+    </task>
+    <task id="LOCAL-00013" summary="also adding AOC on the BBB">
+      <option name="closed" value="true" />
+      <created>1764089677617</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1764089677617</updated>
+    </task>
+    <task id="LOCAL-00014" summary="small things, lower learning">
+      <option name="closed" value="true" />
+      <created>1764093597410</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1764093597410</updated>
+    </task>
+    <task id="LOCAL-00015" summary="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)">
+      <option name="closed" value="true" />
+      <created>1764104015101</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1764104015101</updated>
+    </task>
+    <task id="LOCAL-00016" summary="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)">
+      <option name="closed" value="true" />
+      <created>1764105640034</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1764105640034</updated>
+    </task>
+    <task id="LOCAL-00017" summary="118 s/h files">
+      <option name="closed" value="true" />
+      <created>1764187469106</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1764187469106</updated>
+    </task>
+    <task id="LOCAL-00018" summary="117 files, pipeline, bug fixes in nn_preprocess (always finding more malformed data :/)">
+      <option name="closed" value="true" />
+      <created>1764189933917</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1764189933917</updated>
+    </task>
+    <task id="LOCAL-00019" summary="bug fixes, 116">
+      <option name="closed" value="true" />
+      <created>1764197361392</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1764197361392</updated>
+    </task>
+    <task id="LOCAL-00020" summary="115 and 116 senate?">
+      <option name="closed" value="true" />
+      <created>1764197372455</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1764197372455</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fixing bugs and datafiles">
+      <option name="closed" value="true" />
+      <created>1764198969791</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1764198969791</updated>
+    </task>
+    <task id="LOCAL-00022" summary="more">
+      <option name="closed" value="true" />
+      <created>1764263613528</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1764263613528</updated>
+    </task>
+    <task id="LOCAL-00023" summary="removed many many intermediate / unneeded data files">
+      <option name="closed" value="true" />
+      <created>1764332134435</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1764332134435</updated>
+    </task>
+    <task id="LOCAL-00024" summary="small cleanup + more metrics">
+      <option name="closed" value="true" />
+      <created>1764334296850</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1764334296850</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -187,6 +305,19 @@
     <MESSAGE value="prepping for last preprocessing step" />
     <MESSAGE value="lots of neural net preprocessing" />
     <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
-    <option name="LAST_COMMIT_MESSAGE" value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
+    <MESSAGE value="first pass of a neural network that is... working... remarkably... well?" />
+    <MESSAGE value="also adding AOC on the BBB" />
+    <MESSAGE value="small things, lower learning" />
+    <MESSAGE value="files for the 118th congress (so we can check model's &quot;extensibility&quot; beyond just the training data?)" />
+    <MESSAGE value="some experimentation w.r.t. overfitting, extensibility / predictability, etc. (if that makes any sense at all)" />
+    <MESSAGE value="118 s/h files" />
+    <MESSAGE value="117 files, pipeline, bug fixes in nn_preprocess (always finding more malformed data :/)" />
+    <MESSAGE value="bug fixes, 116" />
+    <MESSAGE value="115 and 116 senate?" />
+    <MESSAGE value="fixing bugs and datafiles" />
+    <MESSAGE value="more" />
+    <MESSAGE value="removed many many intermediate / unneeded data files" />
+    <MESSAGE value="small cleanup + more metrics" />
+    <option name="LAST_COMMIT_MESSAGE" value="small cleanup + more metrics" />
   </component>
 </project>
