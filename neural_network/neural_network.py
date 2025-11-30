@@ -105,6 +105,12 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
     model.save(f"models/{model_id}.keras")
 
 run_nn([
+    "../datafiles/NN_files/NN_HOUSE_107.csv",
+    "../datafiles/NN_files/NN_SENATE_107.csv",
+    "../datafiles/NN_files/NN_HOUSE_108.csv",
+    "../datafiles/NN_files/NN_SENATE_108.csv",
+    "../datafiles/NN_files/NN_HOUSE_109.csv",
+    "../datafiles/NN_files/NN_SENATE_109.csv",
     "../datafiles/NN_files/NN_HOUSE_110.csv",
     "../datafiles/NN_files/NN_SENATE_110.csv",
     "../datafiles/NN_files/NN_HOUSE_111.csv",
@@ -125,5 +131,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=True, num_epochs=2)
+], use_voteview=True, num_epochs=100)
 

@@ -4,10 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="more anecdotes,">
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="support for anecdotal analysis with and without voteview being used">
+      <change afterPath="$PROJECT_DIR$/datafiles/H107_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H107_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H107_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H108_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H108_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H108_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H109_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H109_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/H109_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S107_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S107_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S107_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S108_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S108_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S108_votes.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S109_members.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S109_rollcalls.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/datafiles/S109_votes.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_preprocess.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -328,11 +347,18 @@
       <option name="project" value="LOCAL" />
       <updated>1764447485121</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="support for anecdotal analysis with and without voteview being used">
+      <option name="closed" value="true" />
+      <created>1764517591788</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764517591788</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="more for api on legislation (which is the harder one)" />
     <MESSAGE value="congress api preprocessing for cleansed legislative datasets- get the number of cosponsors" />
     <MESSAGE value="congress api functions completed" />
     <MESSAGE value="cleanup + some datafiles for the 119th congress" />
@@ -357,6 +383,7 @@
     <MESSAGE value="workspace" />
     <MESSAGE value="resolved conflicts + keeping track of training metrics" />
     <MESSAGE value="more anecdotes," />
-    <option name="LAST_COMMIT_MESSAGE" value="more anecdotes," />
+    <MESSAGE value="support for anecdotal analysis with and without voteview being used" />
+    <option name="LAST_COMMIT_MESSAGE" value="support for anecdotal analysis with and without voteview being used" />
   </component>
 </project>
