@@ -1,5 +1,6 @@
 # using source, we can import functions from other files
 source("./collaborative_filtering.R")
+source("../preprocessing/cf_preprocessing.R")
 
 # idea:
 # - randomly generate 100 points user/item combinations
@@ -61,4 +62,44 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
   accuracy <- mean(round(preds) == random_votes)
   
   return(c(mse, accuracy))
+}
+
+# combining multiple chambers (using 119 and 118 as my example)
+house_118  <- build_matrix_for_chamber(118, "H")
+house_119 <- build_matrix_for_chamber(119, "H")
+
+all_rows <- union(rownames(house_118), rownames(house_119))
+all_cols <- union(colnames(house_118), colnames(house_119))
+
+# expands a matrix to have all of the rows and the columns passed in as params
+# and fills in values for rows and columns that it has
+expand_matrix <- function(mat, all_rows, all_cols) {
+  # initialize the matrix with NA because that's what we express no vote as
+  new_mat <- matrix(NA, nrow = length(all_rows), ncol = length(all_cols),
+                    dimnames = list(all_rows, all_cols))
+  # add the existing values
+  common_rows <- intersect(rownames(mat), all_rows)
+  common_cols <- intersect(colnames(mat), all_cols)
+  new_mat[common_rows, common_cols] <- mat[common_rows, common_cols]
+  return(new_mat)
+}
+
+house_118_mat <- expand_matrix(house_118, all_rows, all_cols)
+house_119_mat <- expand_matrix(house_119, all_rows, all_cols)
+
+# make the combined matrix
+# seq_along is like using range in python but for the length of all rows
+combined <- mat1_exp
+# find the rows
+for (i in seq_along(all_rows)) {
+  # iterate through the columns
+  for (j in seq_along(all_cols)) {
+    # either they voted on the bill in house 118 or house 119, because bill columns should be different
+    if (!is.na(house_118_mat[i, j])) {
+      combined[i, j] <- house_118_mat[i, j]
+    }
+    if (!is.na(house_119_mat[i, j])) {
+      combined[i, j] <- mat2_exp[i, j]
+    }
+  }
 }
