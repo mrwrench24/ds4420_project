@@ -68,6 +68,9 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
 house_118  <- build_matrix_for_chamber(118, "H")
 house_119 <- build_matrix_for_chamber(119, "H")
 
+colnames(house_118) <- paste0(118, "_", colnames(house_118))
+colnames(house_119) <- paste0(119, "_", colnames(house_119))
+
 all_rows <- union(rownames(house_118), rownames(house_119))
 all_cols <- union(colnames(house_118), colnames(house_119))
 
@@ -89,7 +92,7 @@ house_119_mat <- expand_matrix(house_119, all_rows, all_cols)
 
 # make the combined matrix
 # seq_along is like using range in python but for the length of all rows
-combined <- mat1_exp
+combined <- house_118_mat
 # find the rows
 for (i in seq_along(all_rows)) {
   # iterate through the columns
@@ -99,7 +102,7 @@ for (i in seq_along(all_rows)) {
       combined[i, j] <- house_118_mat[i, j]
     }
     if (!is.na(house_119_mat[i, j])) {
-      combined[i, j] <- mat2_exp[i, j]
+      combined[i, j] <- house_119_mat[i, j]
     }
   }
 }
