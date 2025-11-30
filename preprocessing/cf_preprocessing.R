@@ -64,6 +64,10 @@ filter_votes <- function(votes_df, bills) {
 # - data_dir: the directory where the data is stored
 # had to make use of paste0 for this function which concats strings together
 load_chamber_data <- function(congress, chamber_code, data_dir = "../data") {
+  if (!(chamber_code %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  
   votes_path <- file.path(
     data_dir,
     paste0(chamber_code, congress, "_votes.csv")
@@ -88,6 +92,10 @@ load_chamber_data <- function(congress, chamber_code, data_dir = "../data") {
 # - congress: which congress # we want to look for
 # - chamber: H for house, S for senate
 build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collaborative_filtering/") {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  
   data <- load_chamber_data(congress, chamber)
   bills <- data$rollcalls$rollnumber
   filtered_votes <- filter_votes(data$votes, bills)

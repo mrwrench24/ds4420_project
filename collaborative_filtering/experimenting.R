@@ -11,8 +11,10 @@ source("../preprocessing/cf_preprocessing.R")
 house_votes <- read.csv("H118_cf.csv", row.names = 1, check.names = FALSE)
 senate_votes <- read.csv("S118_cf.csv", row.names = 1, check.names = FALSE)
 
-# for house118, we get MSE: 0.2617374 Accuracy: 0.76 
-# for senate118, we get MSE: 0.3620201 Accuracy: 0.69
+# for house118, we get MSE: 0.276 Accuracy: 0.73
+# for senate118, we get MSE: 0.227 Accuracy: 0.83
+# this obviously varies because we are doing true random but ranges between 
+# 70-85% for accuracy and around 0.2-0.35 for loss
 
 test_metrics <- function(votes_matrix, num_samples = 100) {
   # don't want to include NA votes in 100 sumples
@@ -54,7 +56,7 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
       target_user, 
       target_bill, 
       'cosine', 
-      200
+      8
     )
   }
   
@@ -63,16 +65,6 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
   
   return(c(mse, accuracy))
 }
-
-# combining multiple chambers (using 119 and 118 as my example)
-house_118  <- build_matrix_for_chamber(118, "H")
-house_119 <- build_matrix_for_chamber(119, "H")
-
-colnames(house_118) <- paste0(118, "_", colnames(house_118))
-colnames(house_119) <- paste0(119, "_", colnames(house_119))
-
-all_rows <- union(rownames(house_118), rownames(house_119))
-all_cols <- union(colnames(house_118), colnames(house_119))
 
 # expands a matrix to have all of the rows and the columns passed in as params
 # and fills in values for rows and columns that it has
@@ -87,22 +79,106 @@ expand_matrix <- function(mat, all_rows, all_cols) {
   return(new_mat)
 }
 
-house_118_mat <- expand_matrix(house_118, all_rows, all_cols)
-house_119_mat <- expand_matrix(house_119, all_rows, all_cols)
-
-# make the combined matrix
-# seq_along is like using range in python but for the length of all rows
-combined <- house_118_mat
-# find the rows
-for (i in seq_along(all_rows)) {
-  # iterate through the columns
-  for (j in seq_along(all_cols)) {
-    # either they voted on the bill in house 118 or house 119, because bill columns should be different
-    if (!is.na(house_118_mat[i, j])) {
-      combined[i, j] <- house_118_mat[i, j]
-    }
-    if (!is.na(house_119_mat[i, j])) {
-      combined[i, j] <- house_119_mat[i, j]
+# this function build a combined matrix for multiple congresses for one chamber
+# we dont support combining house and senate chamber since the members will be different
+# parameters:
+# - congresses: a list of numbers (as strings) for congresses 
+# - chamber: the chamber code "H" for house and "S" for senate
+combine_congress_matrices <- function(congresses, chamber) {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  matrices <- list()
+  
+  # put all of the individual matrices into a bigger one with each index in a bigger list
+  for (i in seq_along(congresses)) {
+    curr <- congresses[i]
+    mat <- build_matrix_for_chamber(curr, chamber)
+    colnames(mat) <- paste0(curr, "_", colnames(mat))
+    matrices[[i]] <- mat
+  }
+  
+  all_rows <- rownames(matrices[[1]])
+  all_cols <- colnames(matrices[[1]])
+  
+  # if more than 1 matrix exists, we need to combine them with unique columns 
+  # and rows (to account for some voters being in multiple congresses)
+  if (length(matrices) > 1) {
+    for (i in 2:length(matrices)) {
+      all_rows <- union(all_rows, rownames(matrices[[i]]))
+      all_cols <- union(all_cols, colnames(matrices[[i]]))
     }
   }
+  
+  # expans each individual matrix from congresses to include all rows and cols
+  expanded_mats <- list()
+  for (i in seq_along(matrices)) {
+    expanded_mats[[i]] <- expand_matrix(matrices[[i]], all_rows, all_cols)
+  }
+  
+  # make the combined matrix
+  # seq_along is like using range in python but for the length of all rows
+  combined <- expanded_mats[[1]]
+  
+  # only expand combined if more than 1 matrix exists
+  if (length(expanded_mats) > 1) {
+    for (k in 2:length(expanded_mats)) {
+      # find the rows
+      for (i in seq_along(all_rows)) {
+        # find the columns
+        for (j in seq_along(all_cols)) {
+          # if the row/col exists in one matrix, we add it
+          # we won't have any more than one matrix that has a vote for (row, col) since the bill names are now split by congress
+          if (!is.na(expanded_mats[[k]][i, j])) {
+            combined[i, j] <- expanded_mats[[k]][i, j]
+          }
+        }
+      }
+    }
+  }
+  
+  return (combined)
 }
+
+# will predict the vote for the user based on multiple congresses
+# parameters:
+# - target_user (string): the icpsr ID of the user we are trying to predict the vote from
+# - target_bill (string): the bill rollnumber of the legislation we are trying to predict the vote for
+# - target_congress (number): the congress # we are looking at legislations from
+# - chamber (string): the chamber we are looking at. "H" for house, "S" for senate
+# - congresses (list of numbers): the congresses we are looking at for the bill
+combined_user_cf <- function(
+    target_user,
+    target_bill,
+    target_congress,
+    chamber,
+    congresses,
+    similarity = "cosine",
+    top_k = 8
+) {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  if (!(target_congress %in% congresses)) {
+    stop("the target congress must be included in the congresses list")
+  }
+  
+  if (length(congresses >= 2)) {
+    # use the combined matrix from all the congresses
+    combined_matrix <- combine_congress_matrices(congresses, chamber)
+    
+    # find the bill id based on how it's represented in the combine matrix
+    full_bill_id <- paste0(target_congress, "_", target_bill)
+  } else {
+    congress <- congresses[1] # there is only one congress, so we get the first one
+    combined_matrix <- build_matrix_for_chamber(congress ,chamber)
+    full_bill_id <- target_bill # the bill id doesn't change when we only have one congress
+  }
+  
+  # find the prediction
+  result <- user_collab_filter(combined_matrix, target_user, full_bill_id,
+                               similarity, top_k)
+  
+  return(result)
+}
+

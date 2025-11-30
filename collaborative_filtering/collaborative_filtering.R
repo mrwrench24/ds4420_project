@@ -112,6 +112,9 @@ final_user_cf <- function(congress, chamber,
                             icpsr, bill, metric, 
                             k, 
                             mat_dir = "../collaborative_filtering") {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use H for house and S for senate for the chamber")
+  }
   
   # get the file path by concatenating the string to _cf
   mat <- file.path(
