@@ -103,7 +103,7 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
 
     score = model.evaluate(X_test, Y_test)
 
-    with open(f'./runs/{run_id}/test_info.text', 'w') as test_info_file:
+    with open(f'./runs/{run_id}/test_info.txt', 'w') as test_info_file:
         test_info_file.write(f"Test Binary Cross-Entropy: {score[0]}")
         test_info_file.write(f"\nTest Accuracy: {score[1]}")
         test_info_file.write(f"\nTest MSE: {score[2]}")
