@@ -66,4 +66,4 @@ def cleanse_bills(rollcalls_senate_path: str, rollcalls_house_path: str):
             if question in HOUSE_ALLOWED_QUESTIONS and bill_number in senate_bill_numbers:
                 writer.writerow(row)
 
-cleanse_bills("data/S119_rollcalls.csv", "data/H119_rollcalls.csv")
+# cleanse_bills("/Users/jakesquatrito/Downloads/S118_rollcalls.csv", "/Users/jakesquatrito/Downloads/H118_rollcalls.csv")

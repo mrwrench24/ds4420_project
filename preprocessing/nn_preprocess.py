@@ -22,7 +22,7 @@ input to the planned Neural Network:
 - Legislation Voteview Dimensions (1 and 2)
 
 For training, it also has to include:
-- Member's Vote
+- Member's Vote (For simplicity, 0 = no, 1 = yes, remove all non-votes / presents)
 
 To keep it organized, we will also include:
 - Bioguide ID for the Member
@@ -45,12 +45,12 @@ PARTY_MAPPING_2 = { "100": 0, "200": 1, "328": 1 }
 
 # yes = 1, no = 0
 VOTE_MAPPING = {
-    "4": 0,
-    "5": 0,
-    "6": 0,
-    "1": 1,
-    "2": 1,
-    "3": 1
+    4: 0,
+    5: 0,
+    6: 0,
+    1: 1,
+    2: 1,
+    3: 1
 }
 
 def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_cleansed: str) -> pd.DataFrame:
@@ -64,7 +64,7 @@ def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_clea
         reader = csv.DictReader(members_file)
 
         for row in reader:
-            icpsr = row["icpsr"]
+            icpsr = int(row["icpsr"])
 
             dict_for_member = dict()
             for key in MEMBER_KEYS:
@@ -97,14 +97,19 @@ def nn_dataset_merging(members_api: str, rollcalls_cleansed_api: str, votes_clea
 
         for row in reader:
             rollnumber = row["rollnumber"]
-            icpsr = row["icpsr"]
+            # sometimes the data is a double (thanks voteview :/)
+            icpsr = int(float(row["icpsr"]))
+
+            if icpsr not in members_dict:
+                print(f"Skipping icpsr {icpsr}")
+                continue
 
             member_info = members_dict[icpsr]
             bill_info = bill_dict[rollnumber]
 
             merged_info = member_info | bill_info
 
-            merged_info["vote"] = row["cast_code"]
+            merged_info["vote"] = int(float(row["cast_code"]))
             merged_info["rollnumber"] = rollnumber
             merged_info["icpsr"] = icpsr
 
@@ -135,13 +140,14 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
     that requires either 1.) we are bound to one election's results (and it misses changing nature of country)
     or 2.) requires a lot more data to be collected.
     '''
+    merged_df = merged_df[merged_df["chamber"].isin(CHAMBER_MAPPING)]
     merged_df["chamber"] = merged_df["chamber"].map(CHAMBER_MAPPING).astype(int)
 
     merged_df["party_code_1"] = merged_df["party_code"].map(PARTY_MAPPING_1).astype(int)
     merged_df["party_code_2"] = merged_df["party_code"].map(PARTY_MAPPING_2).astype(int)
 
     # remove non-votes, then replace
-    merged_df = merged_df[~merged_df["vote"].isin(["0", "7", "8", "9"])]
+    merged_df = merged_df[~merged_df["vote"].isin([0, 7, 8, 9])]
     merged_df["vote"] = merged_df["vote"].map(VOTE_MAPPING).astype(int)
 
     # should be only 0, 1
@@ -181,16 +187,16 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
 
     merged_df.to_csv(output_path, index=False)
 
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_HOUSE_119.csv"
-)
-
-nn_preprocess(
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
-"/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
-    "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/NN_SENATE_119.csv"
-)
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
+#     "../datafiles/NN_FILES/NN_HOUSE_119.csv"
+# )
+#
+# nn_preprocess(
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
+# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
+#     "../datafiles/NN_files/NN_SENATE_119.csv"
+# )
