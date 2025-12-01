@@ -1,3 +1,5 @@
+source("../preprocessing/cf_preprocessing.R")
+
 # cosine similarity function
 cosine_similarity <- function(u1, u2) {
   dot_product <- sum(u1 * u2, na.rm = T)
