@@ -190,13 +190,13 @@ def nn_preprocess(members_api: str, rollcalls_cleansed_api: str, votes_cleansed:
 # nn_preprocess(
 #     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_members_API.csv",
 #     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_rollcalls_CLEANSED_API.csv",
-# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/H119_votes_CLEANSED.csv",
 #     "../datafiles/NN_FILES/NN_HOUSE_119.csv"
 # )
 #
 # nn_preprocess(
 #     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_members_API.csv",
 #     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_rollcalls_CLEANSED_API.csv",
-# "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
+#     "/Users/jakesquatrito/Desktop/ds4420_project/datafiles/S119_votes_CLEANSED.csv",
 #     "../datafiles/NN_files/NN_SENATE_119.csv"
 # )

@@ -21,7 +21,7 @@ bill's number is not found in the Senate data
 '''
 
 SENATE_ALLOWED_RESULTS = ["Bill Defeated", "Bill Passed", "Joint Resolution Defeated", "Joint Resolution Passed"]
-HOUSE_ALLOWED_QUESTIONS = ["On Agreeing to the Resolution", "On Agreeing to the Resolution, as Amended",
+HOUSE_ALLOWED_QUESTIONS = ["Bill Passed", "On Agreeing to the Resolution", "On Agreeing to the Resolution, as Amended",
                            "On Motion to Suspend the Rules and Agree", "On Motion to Suspend the Rules and Agree to the Conference Report",
                            "On Motion to Suspend the Rules and Agree to the Resolution, as Amended",
                            "On Motion to Suspend the Rules and Agree, as Amended",

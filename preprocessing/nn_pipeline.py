@@ -59,4 +59,9 @@ def nn_pipeline(congress_num: int):
     nn_preprocess(senate_members_api, sen_roll_cleanse_api, sen_votes_cleansed, f"../datafiles/NN_files/NN_SENATE_{congress_num}.csv")
     nn_preprocess(house_members_api, house_roll_cleanse_api, house_votes_cleansed,f"../datafiles/NN_files/NN_HOUSE_{congress_num}.csv")
 
-print("test")
+# print("starting 107")
+# nn_pipeline(107)
+# print("starting 108")
+# nn_pipeline(108)
+# print("starting 109")
+# nn_pipeline(109)

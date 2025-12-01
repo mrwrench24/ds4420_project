@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="small cleanup + more metrics">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/neural_network/anecdotal_analysis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocessing/nn_pipeline.py" afterDir="false" />
-    </list>
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="lol" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,12 +18,12 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="main" />
+    <option name="BRANCH" value="origin/DP-15-nn-impl" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="DP-15-nn-impl" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -55,23 +48,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.cleanse_bills.executor": "Run",
-    "Python.cleanse_member_votes.executor": "Run",
-    "Python.get_congress_api.executor": "Run",
-    "Python.neural_network.executor": "Run",
-    "Python.nn_pipeline.executor": "Run",
-    "Python.nn_preprocess.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "#6 on DP-15-nn-impl",
-    "last_opened_file_path": "/Users/jakesquatrito/Desktop/ds4420_project/datafiles"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.anecdotal_analysis.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cleanse_bills.executor&quot;: &quot;Run&quot;,
+    &quot;Python.cleanse_member_votes.executor&quot;: &quot;Run&quot;,
+    &quot;Python.get_congress_api.executor&quot;: &quot;Run&quot;,
+    &quot;Python.neural_network.executor&quot;: &quot;Run&quot;,
+    &quot;Python.nn_pipeline.executor&quot;: &quot;Run&quot;,
+    &quot;Python.nn_preprocess.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;DP-16-neuralnet-experiments&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jakesquatrito/Desktop/ds4420_project/datafiles&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/datafiles" />
@@ -290,18 +284,82 @@
       <option name="project" value="LOCAL" />
       <updated>1764334296850</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="small cleanup">
+      <option name="closed" value="true" />
+      <created>1764335314501</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1764335314501</updated>
+    </task>
+    <task id="LOCAL-00026" summary="histograms, running models without voteview (no anecdotal yet)">
+      <option name="closed" value="true" />
+      <created>1764337058851</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1764337058851</updated>
+    </task>
+    <task id="LOCAL-00027" summary="workspace">
+      <option name="closed" value="true" />
+      <created>1764337670877</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1764337670877</updated>
+    </task>
+    <task id="LOCAL-00028" summary="resolved conflicts + keeping track of training metrics">
+      <option name="closed" value="true" />
+      <created>1764444995894</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1764444995894</updated>
+    </task>
+    <task id="LOCAL-00029" summary="more anecdotes,">
+      <option name="closed" value="true" />
+      <created>1764447485121</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1764447485121</updated>
+    </task>
+    <task id="LOCAL-00030" summary="support for anecdotal analysis with and without voteview being used">
+      <option name="closed" value="true" />
+      <created>1764517591788</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1764517591788</updated>
+    </task>
+    <task id="LOCAL-00031" summary="all NN files from the 21st century">
+      <option name="closed" value="true" />
+      <created>1764519891931</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1764519891931</updated>
+    </task>
+    <task id="LOCAL-00032" summary="everything is so very nice and organized inside of a folder when you train the model">
+      <option name="closed" value="true" />
+      <created>1764537434170</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1764537434170</updated>
+    </task>
+    <task id="LOCAL-00033" summary="lol">
+      <option name="closed" value="true" />
+      <created>1764537467226</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1764537467226</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial readme scaffolding" />
-    <MESSAGE value="works for senate but more is needed on house" />
-    <MESSAGE value="house works" />
-    <MESSAGE value="progress towards preprocessing and outlining what else needs to be done. taking more of a &quot;pipelined&quot; approach but with individual files" />
-    <MESSAGE value="more for api on legislation (which is the harder one)" />
-    <MESSAGE value="congress api preprocessing for cleansed legislative datasets- get the number of cosponsors" />
-    <MESSAGE value="congress api functions completed" />
-    <MESSAGE value="cleanup + some datafiles for the 119th congress" />
     <MESSAGE value="prepping for last preprocessing step" />
     <MESSAGE value="lots of neural net preprocessing" />
     <MESSAGE value="wrapped up NN preprocessing + added example House + Senate full NN datafiles for demonstration" />
@@ -318,6 +376,15 @@
     <MESSAGE value="more" />
     <MESSAGE value="removed many many intermediate / unneeded data files" />
     <MESSAGE value="small cleanup + more metrics" />
-    <option name="LAST_COMMIT_MESSAGE" value="small cleanup + more metrics" />
+    <MESSAGE value="small cleanup" />
+    <MESSAGE value="histograms, running models without voteview (no anecdotal yet)" />
+    <MESSAGE value="workspace" />
+    <MESSAGE value="resolved conflicts + keeping track of training metrics" />
+    <MESSAGE value="more anecdotes," />
+    <MESSAGE value="support for anecdotal analysis with and without voteview being used" />
+    <MESSAGE value="all NN files from the 21st century" />
+    <MESSAGE value="everything is so very nice and organized inside of a folder when you train the model" />
+    <MESSAGE value="lol" />
+    <option name="LAST_COMMIT_MESSAGE" value="lol" />
   </component>
 </project>
