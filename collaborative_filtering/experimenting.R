@@ -8,15 +8,17 @@ source("../preprocessing/cf_preprocessing.R")
 # - try to predict the initially eliminated points
 # - calculate accuracy and loss
 
-house_votes <- read.csv("H118_cf.csv", row.names = 1, check.names = FALSE)
-senate_votes <- read.csv("S118_cf.csv", row.names = 1, check.names = FALSE)
-
-# for house118, we get MSE: 0.276 Accuracy: 0.73
+# for house119, we get MSE: 0.187 Accuracy: 0.89
 # for senate118, we get MSE: 0.227 Accuracy: 0.83
 # this obviously varies because we are doing true random but ranges between 
 # 70-85% for accuracy and around 0.2-0.35 for loss
 
-test_metrics <- function(votes_matrix, num_samples = 100) {
+# produce accuracy and MSE metrics for predicted votes for a voting matrix based on a random number of samples
+# parameters
+# - votes_matrix: the user-item matrix we are using to mask and predict from
+# - num_samples: the number of samples we want to predict and get metrics from
+# - top_k: the number of top users we want to compare the user with
+test_metrics <- function(votes_matrix, num_samples = 100, top_k = 10) {
   # don't want to include NA votes in 100 sumples
   # which function returns positions of elements and we want it in an array
   valid_cells <- which(!is.na(votes_matrix), arr.ind = TRUE)
@@ -56,7 +58,7 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
       target_user, 
       target_bill, 
       'cosine', 
-      8
+      top_k
     )
   }
   
@@ -66,119 +68,62 @@ test_metrics <- function(votes_matrix, num_samples = 100) {
   return(c(mse, accuracy))
 }
 
-# expands a matrix to have all of the rows and the columns passed in as params
-# and fills in values for rows and columns that it has
-expand_matrix <- function(mat, all_rows, all_cols) {
-  # initialize the matrix with NA because that's what we express no vote as
-  new_mat <- matrix(NA, nrow = length(all_rows), ncol = length(all_cols),
-                    dimnames = list(all_rows, all_cols))
-  # add the existing values
-  common_rows <- intersect(rownames(mat), all_rows)
-  common_cols <- intersect(colnames(mat), all_cols)
-  new_mat[common_rows, common_cols] <- mat[common_rows, common_cols]
-  return(new_mat)
-}
-
-# this function build a combined matrix for multiple congresses for one chamber
-# we dont support combining house and senate chamber since the members will be different
-# parameters:
-# - congresses: a list of numbers (as strings) for congresses 
-# - chamber: the chamber code "H" for house and "S" for senate
-combine_congress_matrices <- function(congresses, chamber) {
-  if (!(chamber %in% c("H", "S"))) {
-    stop("use S for senate and H for house")
-  }
-  matrices <- list()
+# produce accuracy and MSE metrics for predicted votes for a voting matrix based
+# on a random bill for every user
+# parameters
+# - votes_matrix: the user-item matrix we are using to mask and predict from
+# - top_k: the number of top users we want to compare the user with
+test_every_voter <- function(votes_matrix, top_k = 10) {
+  n_rows <- nrow(votes_matrix)
   
-  # put all of the individual matrices into a bigger one with each index in a bigger list
-  for (i in seq_along(congresses)) {
-    curr <- congresses[i]
-    mat <- build_matrix_for_chamber(curr, chamber)
-    colnames(mat) <- paste0(curr, "_", colnames(mat))
-    matrices[[i]] <- mat
+  # pick a non-NA vote for every user
+  rows <- numeric()
+  cols <- numeric()
+  
+  for (r in 1:n_rows) {
+    valid_cols <- which(!is.na(votes_matrix[r, ]))
+    picked_cols <- valid_cols[sample(length(valid_cols), 1)]
+    # add each row and new column choices to the rows and cols list
+    rows <- c(rows, r)
+    cols <- c(cols, picked_cols)
   }
   
-  all_rows <- rownames(matrices[[1]])
-  all_cols <- colnames(matrices[[1]])
+  # pick random votes from the combination
+  random_votes <- votes_matrix[cbind(rows, cols)]
+  print(data.frame(row = rows, col = cols, value = random_votes))
   
-  # if more than 1 matrix exists, we need to combine them with unique columns 
-  # and rows (to account for some voters being in multiple congresses)
-  if (length(matrices) > 1) {
-    for (i in 2:length(matrices)) {
-      all_rows <- union(all_rows, rownames(matrices[[i]]))
-      all_cols <- union(all_cols, colnames(matrices[[i]]))
-    }
-  }
+  # copy of the matrix to remove the votes
+  masked_matrix <- votes_matrix
+  masked_matrix[cbind(rows, cols)] <- NA
   
-  # expans each individual matrix from congresses to include all rows and cols
-  expanded_mats <- list()
-  for (i in seq_along(matrices)) {
-    expanded_mats[[i]] <- expand_matrix(matrices[[i]], all_rows, all_cols)
-  }
-  
-  # make the combined matrix
-  # seq_along is like using range in python but for the length of all rows
-  combined <- expanded_mats[[1]]
-  
-  # only expand combined if more than 1 matrix exists
-  if (length(expanded_mats) > 1) {
-    for (k in 2:length(expanded_mats)) {
-      # find the rows
-      for (i in seq_along(all_rows)) {
-        # find the columns
-        for (j in seq_along(all_cols)) {
-          # if the row/col exists in one matrix, we add it
-          # we won't have any more than one matrix that has a vote for (row, col) since the bill names are now split by congress
-          if (!is.na(expanded_mats[[k]][i, j])) {
-            combined[i, j] <- expanded_mats[[k]][i, j]
-          }
-        }
-      }
-    }
-  }
-  
-  return (combined)
-}
-
-# will predict the vote for the user based on multiple congresses
-# parameters:
-# - target_user (string): the icpsr ID of the user we are trying to predict the vote from
-# - target_bill (string): the bill rollnumber of the legislation we are trying to predict the vote for
-# - target_congress (number): the congress # we are looking at legislations from
-# - chamber (string): the chamber we are looking at. "H" for house, "S" for senate
-# - congresses (list of numbers): the congresses we are looking at for the bill
-combined_user_cf <- function(
-    target_user,
-    target_bill,
-    target_congress,
-    chamber,
-    congresses,
-    similarity = "cosine",
-    top_k = 8
-) {
-  if (!(chamber %in% c("H", "S"))) {
-    stop("use S for senate and H for house")
-  }
-  if (!(target_congress %in% congresses)) {
-    stop("the target congress must be included in the congresses list")
-  }
-  
-  if (length(congresses >= 2)) {
-    # use the combined matrix from all the congresses
-    combined_matrix <- combine_congress_matrices(congresses, chamber)
+  # predictions
+  preds <- numeric(length(rows))
+  for (i in seq_along(rows)) {
+    target_user <- rownames(votes_matrix)[rows[i]] # the target icpsr
+    target_bill <- colnames(votes_matrix)[cols[i]] # the target rollnumber
     
-    # find the bill id based on how it's represented in the combine matrix
-    full_bill_id <- paste0(target_congress, "_", target_bill)
-  } else {
-    congress <- congresses[1] # there is only one congress, so we get the first one
-    combined_matrix <- build_matrix_for_chamber(congress ,chamber)
-    full_bill_id <- target_bill # the bill id doesn't change when we only have one congress
+    preds[i] <- user_collab_filter(
+      masked_matrix,
+      target_user,
+      target_bill,
+      "cosine",
+      top_k
+    )
   }
   
-  # find the prediction
-  result <- user_collab_filter(combined_matrix, target_user, full_bill_id,
-                               similarity, top_k)
+  # see how good the predictionsare
+  mse <- mean((preds - random_votes)^2)
+  accuracy <- mean(round(preds) == random_votes)
   
-  return(result)
+  return(c(mse, accuracy))
 }
 
+# metric results from every voter (at least one bill):
+# - house118: 0.219 MSE and 0.767 accuracy
+# - senate118: 331 MSE 0.770 accuracy
+
+# example use:
+senate_118 <- build_matrix_for_chamber(118, "S")
+house_119  <- build_matrix_for_chamber(119, "H")
+test_every_voter(senate_118)
+test_metrics(house_119)

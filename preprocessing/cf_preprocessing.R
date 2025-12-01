@@ -113,5 +113,10 @@ build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collabo
 # example use case below (for house 118 and senate 118 -- note that these will 
 # need to be cleansed using the python preprocessing files beforehand)
 # this will automatically save it to H118_cf.csv for example
+# including uncommented lines for reproducability of files
+senate_111 <- build_matrix_for_chamber(111, "S")
+house_111 <- build_matrix_for_chamber(111, "H")
 house_118  <- build_matrix_for_chamber(118, "H")
 senate_118 <- build_matrix_for_chamber(118, "S")
+house_119  <- build_matrix_for_chamber(119, "H")
+senate_119 <- build_matrix_for_chamber(119, "S")
