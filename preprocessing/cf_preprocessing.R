@@ -32,8 +32,17 @@ build_user_item_matrix <- function(votes_df) {
   # where the true values are if it's not NA
   votes_per_user <- rowSums(!is.na(votes_mat))
   user_to_keep <- votes_per_user >= 0.30 * bill_count
-  
   votes_mat <- votes_mat[user_to_keep, ]
+  
+  # calculate the mean of each row and replace the NA values with those
+  row_means <- rowMeans(votes_mat, na.rm = TRUE)
+  
+  for (i in seq_len(nrow(votes_mat))) {
+    # find the NA values
+    na_idx <- is.na(votes_mat[i, ])
+    votes_mat[i, na_idx] <- row_means[i]
+  }
+  
   return(votes_mat)
 }
 
