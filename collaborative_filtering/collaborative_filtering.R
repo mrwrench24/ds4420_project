@@ -1,3 +1,5 @@
+source("../preprocessing/cf_preprocessing.R")
+
 # cosine similarity function
 cosine_similarity <- function(u1, u2) {
   dot_product <- sum(u1 * u2, na.rm = T)
@@ -49,17 +51,17 @@ build_similarity_matrix <- function(votes_mat, similarity) {
 # does the collaborative filtering to return a prediction for how a user will vote on a bill
 # parameters:
 # - votes_df: the dataframe of previous votes 
-# - target_user: the user we are trying to predict the vote for
-# - target_bill: the bill we are trying to predict the user's vote for
+# - target_user: the user (icpsr ID) we are trying to predict the vote for
+# - target_rollnumber: the bill (rollnumber) we are trying to predict the user's vote for
 # - similarity: the similarity metric
 # - k: number for top k similar users
-user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k) {
+user_collab_filter <- function(votes_df, target_user, target_rollnumber, similarity, k) {
   if (!(target_user %in% rownames(votes_df))) {
     stop('user does not exist or has not voted on enough legislations')
   }
   
-  if (!(target_bill %in% colnames(votes_df))) {
-    stop("target bill not found in votes matrix")
+  if (!(target_rollnumber %in% colnames(votes_df))) {
+    stop("target rollnumber not found in votes matrix")
   }
   
   # we need to use the transpose so that users are the columns
@@ -69,8 +71,8 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
   colnames(sim_matrix) <- rownames(votes_df)
   rownames(sim_matrix) <- rownames(votes_df)
   
-  # only account for users who voted on this bill
-  bill_votes <- votes_df[, target_bill]
+  # only account for users who voted on this rollnumber
+  bill_votes <- votes_df[, target_rollnumber]
   
   # need to rename the bill columns by user id, otherwise the indexing won't work
   names(bill_votes) <- rownames(votes_df) 
@@ -109,9 +111,12 @@ user_collab_filter <- function(votes_df, target_user, target_bill, similarity, k
 # so that by passing in the values and congress and chamber, we pull the data 
 # through the function and process the CF automatically for prediction
 final_user_cf <- function(congress, chamber, 
-                            icpsr, bill, metric, 
-                            k, 
-                            mat_dir = "../collaborative_filtering") {
+                            icpsr, rollnumber, metric = 'cosine', 
+                            k = 10, 
+                            mat_dir = "../collaborative_filtering/matrices") {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use H for house and S for senate for the chamber")
+  }
   
   # get the file path by concatenating the string to _cf
   mat <- file.path(
@@ -119,7 +124,7 @@ final_user_cf <- function(congress, chamber,
     paste0(chamber, congress, "_cf.csv"))
   
   votes_mat <- read.csv(mat, row.names = 1, check.names = FALSE)
-  pred <- user_collab_filter(votes_mat, icpsr, bill, metric, k)
+  pred <- user_collab_filter(votes_mat, icpsr, rollnumber, metric, k)
   return(pred)
 }
 
@@ -127,16 +132,186 @@ final_user_cf <- function(congress, chamber,
 final_user_cf(118, 'H', '14854','118', 'cosine', 25)
 final_user_cf(118, 'S', '41301','146', 'cosine', 8)
 
-# example use for user with icpsr id 14854 and bill 118 using specific func
+# example use for user with icpsr id 14854 and rollnumber 118 using specific func
 # house_votes <- read.csv("H118_cf.csv", row.names = 1, check.names = FALSE)
 # senate_votes <- read.csv("S118_cf.csv", row.names = 1, check.names = FALSE)
 # user_collab_filter(house_votes, '14854','118', 'cosine', 200)
 # user_collab_filter(senate_votes, '15021','212', 'L2', 20)
 
 # unfortunately, the model is not perfect, and makes some mistakes because
-# some voters are unpredictable on certain bills
+# some voters are unpredictable on certain rollnumbers
 
 # how did Elizabeth Warren (ICPSR 41301) vote on the Fiscal Responsibility Act 
 # she voted NO
 # user_collab_filter(senate_votes, '41301','146', 'cosine', 8)
 # user_collab_filter(senate_votes, '41301','146', 'L2', 8)
+
+# -----------------
+# COMBINED SECTION
+# ----------------
+# add a way to combine matrices from multiple congresses together
+
+# expands a matrix to have all of the rows and the columns passed in as params
+# and fills in values for rows and columns that it has
+expand_matrix <- function(mat, all_rows, all_cols) {
+  # initialize the matrix with NA because that's what we express no vote as
+  new_mat <- matrix(NA, nrow = length(all_rows), ncol = length(all_cols),
+                    dimnames = list(all_rows, all_cols))
+  # add the existing values
+  common_rows <- intersect(rownames(mat), all_rows)
+  common_cols <- intersect(colnames(mat), all_cols)
+  new_mat[common_rows, common_cols] <- mat[common_rows, common_cols]
+  return(new_mat)
+}
+
+# this function build a combined matrix for multiple congresses for one chamber
+# we dont support combining house and senate chamber since the members will be different
+# parameters:
+# - congresses: a list of numbers (as strings) for congresses 
+# - chamber: the chamber code "H" for house and "S" for senate
+combine_congress_matrices <- function(congresses, chamber, output_dir = "../collaborative_filtering/matrices") {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  matrices <- list()
+  
+  # put all of the individual matrices into a bigger one with each index in a bigger list
+  for (i in seq_along(congresses)) {
+    curr <- congresses[i]
+    mat <- build_matrix_for_chamber(curr, chamber)
+    colnames(mat) <- paste0(curr, "_", colnames(mat))
+    matrices[[i]] <- mat
+  }
+  
+  all_rows <- rownames(matrices[[1]])
+  all_cols <- colnames(matrices[[1]])
+  
+  # if more than 1 matrix exists, we need to combine them with unique columns 
+  # and rows (to account for some voters being in multiple congresses)
+  if (length(matrices) > 1) {
+    for (i in 2:length(matrices)) {
+      all_rows <- union(all_rows, rownames(matrices[[i]]))
+      all_cols <- union(all_cols, colnames(matrices[[i]]))
+    }
+  }
+  
+  # expans each individual matrix from congresses to include all rows and cols
+  expanded_mats <- list()
+  for (i in seq_along(matrices)) {
+    expanded_mats[[i]] <- expand_matrix(matrices[[i]], all_rows, all_cols)
+  }
+  
+  # make the combined matrix
+  # seq_along is like using range in python but for the length of all rows
+  combined <- expanded_mats[[1]]
+  
+  # only expand combined if more than 1 matrix exists
+  if (length(expanded_mats) > 1) {
+    for (k in 2:length(expanded_mats)) {
+      # find the rows
+      for (i in seq_along(all_rows)) {
+        # find the columns
+        for (j in seq_along(all_cols)) {
+          # if the row/col exists in one matrix, we add it
+          # we won't have any more than one matrix that has a vote for (row, col) since the rollnumber names are now split by congress
+          if (!is.na(expanded_mats[[k]][i, j])) {
+            combined[i, j] <- expanded_mats[[k]][i, j]
+          }
+        }
+      }
+    }
+  }
+  # update with user means
+  combined <- replace_with_mean(combined)
+  
+  # write the combined matrix to a csv for future use
+  combined_filename <- file.path(output_dir, paste0(
+    chamber,
+    paste(congresses, collapse = "_"), # Initially used separate, but that didn't work, so using collapse
+    "_cf.csv"
+  ))
+  
+  write.csv(combined, combined_filename, row.names = TRUE)
+  
+  return (combined)
+}
+
+# will predict the vote for the user based on multiple congresses
+# if a prediction (output) is < 0, then it is likely a Nay, if > 0, it is a YEA
+# parameters:
+# - target_user (string): the icpsr ID of the user we are trying to predict the vote from
+# - target_chamber_rollnumber (string): the bill rollnumber of the legislation we are trying to predict the vote for
+# - target_congress (number): the congress # we are looking at legislations from
+# - chamber (string): the chamber we are looking at. "H" for house, "S" for senate
+# - congresses (list of numbers): the congresses we are looking at for the rollnumber
+# - similarity (string): the similarity metric that we want to use
+# - top_k (number): the number of most similar users we want to consider
+combined_user_cf <- function(
+    target_user,
+    target_chamber_rollnumber,
+    target_congress,
+    chamber,
+    congresses,
+    similarity = "cosine",
+    top_k = 8
+) {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  if (!(target_congress %in% congresses)) {
+    stop("the target congress must be included in the congresses list")
+  }
+  
+  if (length(congresses) >= 2) {
+    # use the combined matrix from all the congresses
+    combined_matrix <- combine_congress_matrices(congresses, chamber)
+    
+    # find the bill id based on how it's represented in the combine matrix
+    chamber_rollnumber_id <- paste0(target_congress, "_", target_chamber_rollnumber)
+  } else {
+    congress <- congresses[1] # there is only one congress, so we get the first one
+    combined_matrix <- build_matrix_for_chamber(congress ,chamber)
+    combined_matrix <- replace_with_mean(combined_matrix)
+    chamber_rollnumber_id <- target_chamber_rollnumber # the rollnumber id doesn't change when we only have one congress
+  }
+  
+  # find the prediction for the user
+  result <- user_collab_filter(combined_matrix, target_user, chamber_rollnumber_id,
+                               similarity, top_k)
+  
+  return(result)
+}
+
+# example use for some anecdotal results
+# Big Beautiful Bill HR1 in 119 House
+# Murkowski (icpsr 40300) - she was a swing YES
+final_user_cf(119, 'S', '40300', '372', 'L2', 10)
+# Susan Collins (icpsr 49703) - she was a swing NO (it gets this wrong)
+final_user_cf(119, 'S', '49703', '372', 'L2', 10)
+
+# Fiscal Responsibility Act / Govt. Shutdown of 2023 - HR3746 for the 118th Congress
+# Elizabeth Warren (icpsr 41301) and Matt Gaetz (21719) were both no’s.
+final_user_cf(118, 'S', '41301', '146', 'cosine', 8)
+final_user_cf(118, 'H', '21719', '242', 'cosine', 10)
+
+# Affordable Care Act - HR3590 for the 111th Congress
+# Mitch McConnel Strong NO
+final_user_cf(111, 'S', '14921', '396', 'cosine', 8)
+
+# Sen. Ben Nelson - Swing YES
+final_user_cf(111, 'S', '40103', '396', 'cosine', 8)
+
+# Sen. Olympia Snowe - Swing NO
+final_user_cf(111, 'S', '14661', '396', 'cosine', 8)
+
+
+# use combined 118 and 119 to predice Warren's vote on HR3746 -- rollnumber: 146
+final_user_cf(118, 'S', '41301', '146', 'cosine', 8)
+combined_user_cf('41301', '146', 118, "S", c(118, 119))
+
+# we handle cases like this so that we replace NA votes with means for combined matrices
+# for members who have already voted for more than 30% of all bills in the two congresses
+final_user_cf(119, 'S', '21502', '92', 'cosine', 8)
+combined_user_cf('21502', '92', 119, "S", c(118, 119))
+
+
