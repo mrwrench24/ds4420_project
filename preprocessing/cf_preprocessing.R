@@ -34,6 +34,11 @@ build_user_item_matrix <- function(votes_df) {
   user_to_keep <- votes_per_user >= 0.30 * bill_count
   votes_mat <- votes_mat[user_to_keep, ]
   
+  return(votes_mat)
+}
+
+# find the mean of the user's votes and replace their NA votes with the mean
+replace_with_mean <- function(votes_mat) {
   # calculate the mean of each row and replace the NA values with those
   row_means <- rowMeans(votes_mat, na.rm = TRUE)
   
@@ -109,7 +114,7 @@ build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collabo
   bills <- data$rollcalls$rollnumber
   filtered_votes <- filter_votes(data$votes, bills)
   mat <- build_user_item_matrix(filtered_votes)
-  
+
   # save the matrix to the respective file
   output_file <- file.path(
     output_dir,

@@ -221,6 +221,8 @@ combine_congress_matrices <- function(congresses, chamber) {
       }
     }
   }
+  # update with user means
+  combined <- replace_with_mean(combined)
   
   # write the combined matrix to a csv for future use
   combined_filename <- paste0(
@@ -260,7 +262,7 @@ combined_user_cf <- function(
     stop("the target congress must be included in the congresses list")
   }
   
-  if (length(congresses >= 2)) {
+  if (length(congresses) >= 2) {
     # use the combined matrix from all the congresses
     combined_matrix <- combine_congress_matrices(congresses, chamber)
     
@@ -269,6 +271,7 @@ combined_user_cf <- function(
   } else {
     congress <- congresses[1] # there is only one congress, so we get the first one
     combined_matrix <- build_matrix_for_chamber(congress ,chamber)
+    combined_matrix <- replace_with_mean(combined_matrix)
     chamber_rollnumber_id <- target_chamber_rollnumber # the rollnumber id doesn't change when we only have one congress
   }
   
