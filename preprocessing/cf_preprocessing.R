@@ -32,8 +32,22 @@ build_user_item_matrix <- function(votes_df) {
   # where the true values are if it's not NA
   votes_per_user <- rowSums(!is.na(votes_mat))
   user_to_keep <- votes_per_user >= 0.30 * bill_count
-  
   votes_mat <- votes_mat[user_to_keep, ]
+  
+  return(votes_mat)
+}
+
+# find the mean of the user's votes and replace their NA votes with the mean
+replace_with_mean <- function(votes_mat) {
+  # calculate the mean of each row and replace the NA values with those
+  row_means <- rowMeans(votes_mat, na.rm = TRUE)
+  
+  for (i in seq_len(nrow(votes_mat))) {
+    # find the NA values
+    na_idx <- is.na(votes_mat[i, ])
+    votes_mat[i, na_idx] <- row_means[i]
+  }
+  
   return(votes_mat)
 }
 
@@ -64,6 +78,10 @@ filter_votes <- function(votes_df, bills) {
 # - data_dir: the directory where the data is stored
 # had to make use of paste0 for this function which concats strings together
 load_chamber_data <- function(congress, chamber_code, data_dir = "../data") {
+  if (!(chamber_code %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  
   votes_path <- file.path(
     data_dir,
     paste0(chamber_code, congress, "_votes.csv")
@@ -87,12 +105,16 @@ load_chamber_data <- function(congress, chamber_code, data_dir = "../data") {
 # parameters:
 # - congress: which congress # we want to look for
 # - chamber: H for house, S for senate
-build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collaborative_filtering/") {
+build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collaborative_filtering/matrices") {
+  if (!(chamber %in% c("H", "S"))) {
+    stop("use S for senate and H for house")
+  }
+  
   data <- load_chamber_data(congress, chamber)
   bills <- data$rollcalls$rollnumber
   filtered_votes <- filter_votes(data$votes, bills)
   mat <- build_user_item_matrix(filtered_votes)
-  
+
   # save the matrix to the respective file
   output_file <- file.path(
     output_dir,
@@ -105,5 +127,10 @@ build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collabo
 # example use case below (for house 118 and senate 118 -- note that these will 
 # need to be cleansed using the python preprocessing files beforehand)
 # this will automatically save it to H118_cf.csv for example
+# including uncommented lines for reproducability of files
+senate_111 <- build_matrix_for_chamber(111, "S")
+house_111 <- build_matrix_for_chamber(111, "H")
 house_118  <- build_matrix_for_chamber(118, "H")
 senate_118 <- build_matrix_for_chamber(118, "S")
+house_119  <- build_matrix_for_chamber(119, "H")
+senate_119 <- build_matrix_for_chamber(119, "S")

@@ -76,5 +76,5 @@ plot_bill_votes_nominate <- function(member_df, votes_mat, bill_df, bill_id) {
 # prelim_vote(house_member_df, house_votes_df, '14873', '231')
 
 # for plotting (bill 118 in example):
-# house_votes <- read.csv("house_cf_118.csv", row.names = 1, check.names = FALSE)
+# house_votes <- read.csv("H118_cf.csv", row.names = 1, check.names = FALSE)
 # plot_bill_votes_nominate(house_member_df, house_votes, house_votes_df, 118)
