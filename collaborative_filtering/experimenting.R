@@ -23,9 +23,7 @@ test_metrics <- function(votes_matrix, num_samples = 100, top_k = 10) {
   # which function returns positions of elements and we want it in an array
   valid_cells <- which(!is.na(votes_matrix), arr.ind = TRUE)
   
-  # ***********************
-  # check if using sample is okay
-  # **********************
+  # pick random indices using sample
   picked_indices <- sample(nrow(valid_cells), num_samples, replace = FALSE)
   picked_votes <- valid_cells[picked_indices, ]
   
@@ -49,14 +47,14 @@ test_metrics <- function(votes_matrix, num_samples = 100, top_k = 10) {
   
   for (i in 1:num_samples) {
     target_user <- rownames(votes_matrix)[picked_votes[i, 1]]
-    target_bill <- colnames(votes_matrix)[picked_votes[i, 2]]
+    target_rollnumber <- colnames(votes_matrix)[picked_votes[i, 2]]
     # printing index because I wasn't sure how long the for loop would take
     print(i)
     
     preds[i] <- user_collab_filter(
       masked_matrix, 
       target_user, 
-      target_bill, 
+      target_rollnumber, 
       'cosine', 
       top_k
     )
@@ -69,7 +67,7 @@ test_metrics <- function(votes_matrix, num_samples = 100, top_k = 10) {
 }
 
 # produce accuracy and MSE metrics for predicted votes for a voting matrix based
-# on a random bill for every user
+# on a random rollnumber for every user
 # parameters
 # - votes_matrix: the user-item matrix we are using to mask and predict from
 # - top_k: the number of top users we want to compare the user with
@@ -100,12 +98,12 @@ test_every_voter <- function(votes_matrix, top_k = 10) {
   preds <- numeric(length(rows))
   for (i in seq_along(rows)) {
     target_user <- rownames(votes_matrix)[rows[i]] # the target icpsr
-    target_bill <- colnames(votes_matrix)[cols[i]] # the target rollnumber
+    target_rollnumber <- colnames(votes_matrix)[cols[i]] # the target rollnumber
     
     preds[i] <- user_collab_filter(
       masked_matrix,
       target_user,
-      target_bill,
+      target_rollnumber,
       "cosine",
       top_k
     )
@@ -118,7 +116,7 @@ test_every_voter <- function(votes_matrix, top_k = 10) {
   return(c(mse, accuracy))
 }
 
-# metric results from every voter (at least one bill):
+# metric results from every voter (at least one rollnumber):
 # - house118: 0.219 MSE and 0.767 accuracy
 # - senate118: 331 MSE 0.770 accuracy
 

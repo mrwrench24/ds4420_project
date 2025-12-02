@@ -309,10 +309,8 @@ final_user_cf(111, 'S', '14661', '396', 'cosine', 8)
 final_user_cf(118, 'S', '41301', '146', 'cosine', 8)
 combined_user_cf('41301', '146', 118, "S", c(118, 119))
 
-# discuss how we should handle this? senator Gallego only served in the 119th congress
-# but these results are different because sim scores take into account NA votes (which means
-# new senators vs remaining senators get different similarity scores evem if they 
-# voted all the same in the new senate)
+# we handle cases like this so that we replace NA votes with means for combined matrices
+# for members who have already voted for more than 30% of all bills in the two congresses
 final_user_cf(119, 'S', '21502', '92', 'cosine', 8)
 combined_user_cf('21502', '92', 119, "S", c(118, 119))
 
