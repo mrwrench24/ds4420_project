@@ -105,7 +105,7 @@ load_chamber_data <- function(congress, chamber_code, data_dir = "../data") {
 # parameters:
 # - congress: which congress # we want to look for
 # - chamber: H for house, S for senate
-build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collaborative_filtering/") {
+build_matrix_for_chamber <- function(congress, chamber, output_dir = "../collaborative_filtering/matrices") {
   if (!(chamber %in% c("H", "S"))) {
     stop("use S for senate and H for house")
   }

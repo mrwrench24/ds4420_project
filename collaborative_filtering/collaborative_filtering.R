@@ -113,7 +113,7 @@ user_collab_filter <- function(votes_df, target_user, target_rollnumber, similar
 final_user_cf <- function(congress, chamber, 
                             icpsr, rollnumber, metric = 'cosine', 
                             k = 10, 
-                            mat_dir = "../collaborative_filtering") {
+                            mat_dir = "../collaborative_filtering/matrices") {
   if (!(chamber %in% c("H", "S"))) {
     stop("use H for house and S for senate for the chamber")
   }
@@ -169,7 +169,7 @@ expand_matrix <- function(mat, all_rows, all_cols) {
 # parameters:
 # - congresses: a list of numbers (as strings) for congresses 
 # - chamber: the chamber code "H" for house and "S" for senate
-combine_congress_matrices <- function(congresses, chamber) {
+combine_congress_matrices <- function(congresses, chamber, output_dir = "../collaborative_filtering/matrices") {
   if (!(chamber %in% c("H", "S"))) {
     stop("use S for senate and H for house")
   }
@@ -225,11 +225,11 @@ combine_congress_matrices <- function(congresses, chamber) {
   combined <- replace_with_mean(combined)
   
   # write the combined matrix to a csv for future use
-  combined_filename <- paste0(
+  combined_filename <- file.path(output_dir, paste0(
     chamber,
     paste(congresses, collapse = "_"), # Initially used separate, but that didn't work, so using collapse
     "_cf.csv"
-  )
+  ))
   
   write.csv(combined, combined_filename, row.names = TRUE)
   
