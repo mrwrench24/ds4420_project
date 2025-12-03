@@ -1,0 +1,13 @@
+Test Binary Cross-Entropy: 0.17669685184955597
+Test Accuracy: 0.931405246257782
+Test MSE: 0.051086023449897766
+Test AUC: 0.9728078842163086
+Lisa Murkowski (Swing YES) Prob: [[0.90247804]]
+Susan Collins (Swing NO) Prob: [[0.59158546]]
+AOC (Strong NO) Prob: [[7.317762e-07]]
+Warren (NO) Prob: [[0.98347473]]
+Gaetz (NO) Prob: [[0.01588162]]
+Pelosi (Strong YES) Prob: [[0.84297955]]
+McConnell (Strong NO) Prob: [[3.0048482e-06]]
+Nelson (Swing YES) Prob: [[0.9995578]]
+Snowe (Swing NO) Prob: [[6.668568e-05]]

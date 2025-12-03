@@ -72,35 +72,56 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
 
         data_df = pd.concat([data_df, current_df], ignore_index=True)
 
-    train_data, test_data = train_test_split(data_df, test_size=0.2)
+    train_data, rem_data = train_test_split(data_df, test_size=0.2)
+    # so the val and test sets are each 10% of the total data
+    val_data, test_data = train_test_split(rem_data, test_size=0.5)
 
     columns = INPUT_COLUMNS if use_voteview else INPUT_COLUMNS_NO_VV
 
     X_train = train_data[columns]
     X_test = test_data[columns]
+    X_val = val_data[columns]
 
     Y_train = train_data[OUTPUT_COLUMN]
     Y_test = test_data[OUTPUT_COLUMN]
+    Y_val = val_data[OUTPUT_COLUMN]
 
     # always checking for some class imbalance
     print(Y_train.value_counts())
     print(Y_test.value_counts())
 
     model = make_model(len(columns))
-    training = model.fit(X_train, Y_train, epochs=num_epochs)
+    training = model.fit(
+        X_train,
+        Y_train,
+        epochs=num_epochs,
+        validation_data=(X_val, Y_val),
+    )
 
     plt.clf()
-    plt.plot(training.history['accuracy'], label='accuracy')
-    plt.plot(training.history['mse'], label='mse')
-    plt.plot(training.history['auc'], label='auc')
-    plt.title("Training Metrics at Epoch")
+    plt.plot(training.history.get('accuracy', []), label='accuracy')
+    if 'val_accuracy' in training.history:
+        plt.plot(training.history.get('val_accuracy', []), label='val_accuracy')
+    plt.plot(training.history.get('mse', []), label='mse')
+    if 'val_mse' in training.history:
+        plt.plot(training.history.get('val_mse', []), label='val_mse')
+    plt.plot(training.history.get('auc', []), label='auc')
+    if 'val_auc' in training.history:
+        plt.plot(training.history.get('val_auc', []), label='val_auc')
+    plt.title("Training and Validation Metrics at Epoch")
     plt.legend()
     plt.savefig(f'./runs/{run_id}/extra_metrics.png', dpi=300)
 
     plt.clf()
-    plt.plot(training.history['loss'], label='loss')
+    plt.plot(training.history.get('loss', []), label='loss')
+    if 'val_loss' in training.history:
+        plt.plot(training.history.get('val_loss', []), label='val_loss')
     plt.title("Loss (BCE / Log-Loss) at Epoch")
+    plt.legend()
     plt.savefig(f'./runs/{run_id}/loss.png', dpi=300)
+
+    # save the csv file of training history in case we want to inspect it later
+    pd.DataFrame(training.history).to_csv(f'./runs/{run_id}/training_history.csv', index=False)
 
     score = model.evaluate(X_test, Y_test)
 
@@ -148,5 +169,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=False, num_epochs=250)
+], use_voteview=True, num_epochs=250)
 
