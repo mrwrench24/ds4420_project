@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="lol" />
+    <list default="true" id="209ce7ef-ea2d-4e11-98da-6396fb5fdf59" name="Changes" comment="replaced the stateless run because a chart was messed up">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/neural_network.py" beforeDir="false" afterPath="$PROJECT_DIR$/neural_network/neural_network.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/077b1d96-cfda-11f0-abcd-36713e157319/extra_metrics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/077b1d96-cfda-11f0-abcd-36713e157319/loss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/077b1d96-cfda-11f0-abcd-36713e157319/model.keras" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/077b1d96-cfda-11f0-abcd-36713e157319/predictions_hist.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/077b1d96-cfda-11f0-abcd-36713e157319/test_info.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/34d92e24-cfce-11f0-9eb0-36713e157319/extra_metrics.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/34d92e24-cfce-11f0-9eb0-36713e157319/loss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/34d92e24-cfce-11f0-9eb0-36713e157319/model.keras" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/34d92e24-cfce-11f0-9eb0-36713e157319/predictions_hist.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/neural_network/runs/34d92e24-cfce-11f0-9eb0-36713e157319/test_info.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +75,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;DP-16-neuralnet-experiments&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jakesquatrito/Desktop/ds4420_project/datafiles&quot;
   }
 }</component>
