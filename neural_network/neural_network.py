@@ -89,6 +89,7 @@ def run_nn(nn_file_paths: list[str], use_voteview: bool, num_epochs: int):
     model = make_model(len(columns))
     training = model.fit(X_train, Y_train, epochs=num_epochs)
 
+    plt.clf()
     plt.plot(training.history['accuracy'], label='accuracy')
     plt.plot(training.history['mse'], label='mse')
     plt.plot(training.history['auc'], label='auc')
@@ -147,5 +148,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=True, num_epochs=5)
+], use_voteview=False, num_epochs=250)
 
