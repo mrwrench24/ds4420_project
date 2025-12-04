@@ -169,5 +169,5 @@ run_nn([
     "../datafiles/NN_files/NN_SENATE_118.csv",
     "../datafiles/NN_files/NN_HOUSE_119.csv",
     "../datafiles/NN_files/NN_SENATE_119.csv"
-], use_voteview=True, num_epochs=250)
+], use_voteview=False, num_epochs=250)
 
