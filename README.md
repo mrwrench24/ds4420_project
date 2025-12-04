@@ -38,4 +38,5 @@ party majorities, etc. It will output a prediction between 0 and 1.
 
 ### Part 2: User-User Collaborative Filtering
 
-We will seek to compare the existing votes of legislators to predict whether they will vote on a piece of legislation.
+We will seek to compare the existing votes of legislators to predict whether they will vote on a piece of legislation. There is 
+an option to use cosine similarity or L2, but we use cosine similarity as the default metric with a default k = 10 (most similar users).
