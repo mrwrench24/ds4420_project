@@ -258,7 +258,7 @@ combined_user_cf <- function(
     chamber,
     congresses,
     similarity = "cosine",
-    top_k = 8
+    top_k = 10
 ) {
   if (!(chamber %in% c("H", "S"))) {
     stop("use S for senate and H for house")
