@@ -64,8 +64,13 @@ user_collab_filter <- function(votes_df, target_user, target_rollnumber, similar
     stop("target rollnumber not found in votes matrix")
   }
   
+  # remove the current user's vote before building the similarity matrix
+  curr_vote <- votes_df[target_user, target_rollnumber]
+  votes_df_masked <- votes_df
+  votes_df_masked[target_user, target_rollnumber] <- NA
+  
   # we need to use the transpose so that users are the columns
-  sim_matrix <- build_similarity_matrix(t(votes_df), similarity)
+  sim_matrix <- build_similarity_matrix(t(votes_df_masked), similarity)
   
   # we set the index of the sim_matrix to be based on the user icpsr IDs
   colnames(sim_matrix) <- rownames(votes_df)
